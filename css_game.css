@@ -1,5 +1,12 @@
 .has-bg-img { 
     background: url('img/battlearena_portada.jpg');
-    background-position: center top; 
-    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #999;
+}
+
+body{
+    background-image: url(img/fondo.jpg);
 }
