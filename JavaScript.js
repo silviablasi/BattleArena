@@ -6,20 +6,6 @@ var jugadorAux, jugador;
 var aux;
 
 function remove () {
-    var status;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + token + "/" + code, true);
-    xhr.onload = function() {
-        status =  xhr.status;
-    }
-    xhr.send();
-    if (status == 200) {
-        console.log ("S'ha esborrat el jugador");
-    }
-    return status;
-}
-
-/*function remove () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/remove/" + group_token + "/" + token + "/" + code, false);
     xhr.send();
@@ -28,7 +14,7 @@ function remove () {
         console.log ("S'ha esborrat el jugador");
     }
     return status;
-}*/
+}
 
 /*function spawn () {
     var nombre = prompt("Escribe el nombre de tu personaje: ");
