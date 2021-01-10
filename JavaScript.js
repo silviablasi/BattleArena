@@ -8,7 +8,7 @@ var aux;
 function remove () {
     var status;
     var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + token + "/" + code, true);
+    xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + token + "/" + code, true);
     xhr.onload = function() {
         status =  xhr.status;
     }
