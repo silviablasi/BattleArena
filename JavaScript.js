@@ -82,6 +82,7 @@ function spawn () {
     xhr.send();
     if (status == 200) {
         console.log ("S'ha creat el jugador");
+        player();
         // crear_Taulell ();
     }
     else {
@@ -130,7 +131,7 @@ function map () {
     console.log(aux);
     var status =  xhr.status;
     if (status == 200) {
-        console.log ("S'ha consulat la informació");
+        console.log ("S'ha consultat la informació");
     }
     return status;
 }
@@ -144,17 +145,9 @@ function player () {
     if (status == 200) {
         console.log ("S'ha rebut la informació del jugador");
         jugador = new Jugador (jugadorAux);
+        jugador.foto_Nav();
     }
     return status;
-}
-
-class object {
-    constructor (nom_obj, img, valor_ataque, valor_defensa) {
-        this.nom_obj = nom_obj;
-        this.img = img;
-        this.valor_ataque = valor_ataque;
-        this.valor_defensa = valor_defensa;
-    }
 }
 
 
@@ -164,3 +157,4 @@ function crear_Taulell () {
         matrix[i] = new Array(40);
     }
 }
+

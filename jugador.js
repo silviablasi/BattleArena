@@ -11,12 +11,27 @@ class jugador {
         this.imagen = image;
         this.Objeto = object;
     }
-    move () {
+    move (direccion) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, false);
+        xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + direccion, false);
         xhr.send();
         var status =  xhr.status;
         if (status == 200) {
+            switch (direccion) {
+                case "E":
+                    this.pos_y = this.pos_y - 1; 
+                    break;
+                case "N":
+                    this.pos_x = this.pos_x + 1;  
+                    break;
+                case "O":
+                    this.pos_y = this.pos_y + 1; 
+                    break;
+                case "S":
+                    this.pos_x = this.pos_x - 1; 
+                    break;
+            }
+            this.foto_Nav();
             console.log ("S'ha mogut el jugador");
         }
         else {
@@ -40,48 +55,55 @@ class jugador {
         }
         return status;
     }
+
+    foto_Nav () {
+        if (this.pos_x == 40 || this.pos_x == 0) {
+            document.getElementsByClassName("img-nav").setAttribute("src", "img/pared.jpg");
+        }
+        else {
+            document.getElementsByClassName("img-nav").setAttribute("src", "img/suelo.jpg");
+        }
+    }
 }
 
 function pulsarTecla (event) {
+    var direccion;
     switch(event.keyCode){
         case 37: // Izquierda
-            this.direccion = "E";
-            this.pos_y = this.pos_y - 1;    
-            move();   
+            direccion = "E";   
+            move(direccion);   
             break;
         case 38: // Arriba
-            this.direccion = "N";
-            this.pos_x = this.pos_x + 1;  
-            move();   
+            direccion = "N";
+            move(direccion);    
             break;
         case 39: // Derecha
-            this.direccion = "O";
-            this.pos_y = this.pos_y + 1; 
-            move();  
+            direccion = "O";
+            move(direccion);  
             break;
         case 40: // Bajar
-            this.direccion = "S";
-            this.pos_x = this.pos_x - 1; 
-            move();  
+            direccion = "S";
+            move(direccion);  
             break;
+        //no està bé encara
         case 32: // Doble salto hacia adelante
             if (this.pos_x <= 38 || this.pos_y <= 38) {
-                switch(this.direccion) {
+                switch(direccion) {
                     case "E":
                         this.pos_y = this.pos_y - 2;  
-                        move();
+                        move(direccion);  
                         break;
                     case "N":
                         this.pos_x = this.pos_x + 2;  
-                        move();
+                        move(direccion);  
                         break;
                     case "O":
                         this.pos_y = this.pos_y + 2; 
-                        move(); 
+                        move(direccion);  
                         break;
                     case "S":
                         this.pos_x = this.pos_x - 2;  
-                        move();
+                        move(direccion);  
                         break;
                 }
             }
@@ -94,4 +116,14 @@ function pulsarTecla (event) {
             break;
     }
 }
+
+class object {
+    constructor (nom_obj, img, valor_ataque, valor_defensa) {
+        this.nom_obj = nom_obj;
+        this.img = img;
+        this.valor_ataque = valor_ataque;
+        this.valor_defensa = valor_defensa;
+    }
+}
+
 document.onkeydown = pulsarTecla();
