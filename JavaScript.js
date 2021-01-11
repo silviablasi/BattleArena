@@ -13,6 +13,13 @@ function remove () {
     if (status == 200) {
         console.log ("S'ha esborrat el jugador");
     }
+    if (confirm("Quieres crear otro jugador?")) {
+        // si
+        console.log("Nuevo jugador creado");
+      } else {
+        // no
+        console.log("Salir del juego");
+      }
     return status;
 }
 

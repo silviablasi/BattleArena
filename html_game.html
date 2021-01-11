@@ -10,8 +10,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
         <link rel="stylesheet" href="css_game.css"  type = "text/css">
         <script src="JavaScript.js"></script>
+        <script src="jugador.js"></script>
     </head>
-    <body onload="spawn();">
+    <!-- <body onload="spawn();"> -->
+    <body>
         <div class="m-2">
             
             <div class="columns">
@@ -22,9 +24,9 @@
                         <figure class="image is-128x128">
                             <img class="is-rounded" src="img/MINIMAP_provisional.jpg" alt="minimap" height="10%" width="10%">
                         </figure>
-                        <button class="button">Respawn</button>
-                        <button class="button">New Player</button>
-                        <button class="button">Kill Player</button>
+                        <button class="button" onclick="respawn();">Respawn</button>
+                        <button class="button" onclick="remove();">New Player</button>
+                        <button class="button" onclick="attack();">Kill Player</button>
                     </div>
                 </div>
                 <div class="column is-half">
