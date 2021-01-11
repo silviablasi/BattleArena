@@ -15,20 +15,21 @@ class jugador {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + direccion, false);
         xhr.send();
+        this.direccion = direccion;
         var status =  xhr.status;
         if (status == 200) {
             switch (direccion) {
                 case "E":
-                    this.pos_y = this.pos_y - 1; 
+                    this.pos_x ++; 
                     break;
                 case "N":
-                    this.pos_x = this.pos_x + 1;  
+                    this.pos_y ++;  
                     break;
                 case "O":
-                    this.pos_y = this.pos_y + 1; 
+                    this.pos_x --; 
                     break;
                 case "S":
-                    this.pos_x = this.pos_x - 1; 
+                    this.pos_y --; 
                     break;
             }
             this.foto_Nav();
@@ -57,7 +58,7 @@ class jugador {
     }
 
     foto_Nav () {
-        if ((this.pos_x == 40 && this.direccion == "N") || (this.pos_x == 0 && this.direccion == "S") || (this.pos_y == 40 && this.direccion == "E") || (this.pos_y == 0 && this.direccion == "O")) {
+        if ((this.pos_x == 39 && this.direccion == "E") || (this.pos_x == 1 && this.direccion == "O") || (this.pos_y == 39 && this.direccion == "N") || (this.pos_y == 1 && this.direccion == "S")) {
             var foto = document.getElementById("img-nav");
             foto.setAttribute("src", "img/pared.jpg");
         }

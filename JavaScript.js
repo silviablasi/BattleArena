@@ -158,7 +158,7 @@ function pulsarTecla (event) {
     var direccion;
     switch(event.keyCode){
         case 37: // Izquierda
-            direccion = "E";   
+            direccion = "O";   
             jugador1.move(direccion);   
             break;
         case 38: // Arriba
@@ -166,7 +166,7 @@ function pulsarTecla (event) {
             jugador1.move(direccion);    
             break;
         case 39: // Derecha
-            direccion = "O";
+            direccion = "E";
             jugador1.move(direccion);  
             break;
         case 40: // Bajar
