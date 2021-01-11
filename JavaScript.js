@@ -152,6 +152,59 @@ function player () {
     return status;
 }
 
+document.addEventListener('keydown', pulsarTecla);
+
+function pulsarTecla (event) {
+    var direccion;
+    switch(event.keyCode){
+        case 37: // Izquierda
+            direccion = "E";   
+            jugador1.move(direccion);   
+            break;
+        case 38: // Arriba
+            direccion = "N";
+            jugador1.move(direccion);    
+            break;
+        case 39: // Derecha
+            direccion = "O";
+            jugador1.move(direccion);  
+            break;
+        case 40: // Bajar
+            direccion = "S";
+            jugador1.move(direccion);  
+            break;
+        //no està bé encara
+        case 32: // Doble salto hacia adelante
+            if (this.pos_x <= 38 || this.pos_y <= 38) {
+                switch(direccion) {
+                    case "E":
+                        this.pos_y = this.pos_y - 2;  
+                        jugador1.move(direccion);  
+                        break;
+                    case "N":
+                        this.pos_x = this.pos_x + 2;  
+                        jugador1.move(direccion);  
+                        break;
+                    case "O":
+                        this.pos_y = this.pos_y + 2; 
+                        jugador1.move(direccion);  
+                        break;
+                    case "S":
+                        this.pos_x = this.pos_x - 2;  
+                        jugador1.move(direccion);  
+                        break;
+                }
+            }
+            else {
+                console.warn("Error! No puedes hacer un salto doble");
+            }
+            break;
+        case 13: // Lucha
+            attack();
+            break;
+    }
+}
+
 
 
 function crear_Taulell () {

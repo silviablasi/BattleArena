@@ -68,57 +68,6 @@ class jugador {
     }
 }
 
-/*function pulsarTecla (event) {
-    var direccion;
-    switch(event.keyCode){
-        case 37: // Izquierda
-            direccion = "E";   
-            move(direccion);   
-            break;
-        case 38: // Arriba
-            direccion = "N";
-            move(direccion);    
-            break;
-        case 39: // Derecha
-            direccion = "O";
-            move(direccion);  
-            break;
-        case 40: // Bajar
-            direccion = "S";
-            move(direccion);  
-            break;
-        //no està bé encara
-        case 32: // Doble salto hacia adelante
-            if (this.pos_x <= 38 || this.pos_y <= 38) {
-                switch(direccion) {
-                    case "E":
-                        this.pos_y = this.pos_y - 2;  
-                        move(direccion);  
-                        break;
-                    case "N":
-                        this.pos_x = this.pos_x + 2;  
-                        move(direccion);  
-                        break;
-                    case "O":
-                        this.pos_y = this.pos_y + 2; 
-                        move(direccion);  
-                        break;
-                    case "S":
-                        this.pos_x = this.pos_x - 2;  
-                        move(direccion);  
-                        break;
-                }
-            }
-            else {
-                console.warn("Error! No puedes hacer un salto doble");
-            }
-            break;
-        case 13: // Lucha
-            attack();
-            break;
-    }
-}
-
 class object {
     constructor (nom_obj, img, valor_ataque, valor_defensa) {
         this.nom_obj = nom_obj;
@@ -127,5 +76,3 @@ class object {
         this.valor_defensa = valor_defensa;
     }
 }
-
-document.onkeydown = pulsarTecla();*/
