@@ -2,7 +2,8 @@ var matrix = [];
 var group_token = "b89f9647";
 var code;
 var token;
-var jugadorAux, jugador;
+var jugadorAux;
+var jugador1;
 var aux;
 
 function remove () {
@@ -16,10 +17,11 @@ function remove () {
     if (confirm("Quieres crear otro jugador?")) {
         // si
         console.log("Nuevo jugador creado");
-      } else {
+        spawn();
+    } else {
         // no
         console.log("Salir del juego");
-      }
+    }
     return status;
 }
 
@@ -67,12 +69,11 @@ function remove () {
 }*/
 
 
-function spawn () {
+/*function spawn () {
     function reqListener () {
         aux = JSON.parse(this.responseText);
         token = aux.token;
         code = aux.code;
-        status = xhr.status;
     }
     var status;
     var xhr = new XMLHttpRequest();
@@ -80,6 +81,7 @@ function spawn () {
     xhr.addEventListener("load", reqListener);
     xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre, true);
     xhr.send();
+    status = xhr.status;
     if (status == 200) {
         console.log ("S'ha creat el jugador");
         player();
@@ -89,12 +91,11 @@ function spawn () {
         console.log(status);
     }
     return status;
-}
+}*/
 
-/*function spawn () {
+function spawn () {
     var xhr = new XMLHttpRequest();
     var nombre = prompt("Escribe el nombre de tu personaje: ");
-    //`http://battlearena.danielamo.info/api/spawn/${group_token}/${nombre}`
     xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre, false);
     xhr.send();
     var aux = JSON.parse(xhr.responseText);
@@ -103,10 +104,11 @@ function spawn () {
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha creat el jugador");
+        player();
         // crear_Taulell ();
     }
     return status;
-}*/
+}
 
 function respawn () {
     var xhr = new XMLHttpRequest();
@@ -144,8 +146,8 @@ function player () {
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha rebut la informació del jugador");
-        jugador = new Jugador (jugadorAux);
-        jugador.foto_Nav();
+        jugador1 = new jugador (token, jugadorAux);
+        jugador1.foto_Nav();
     }
     return status;
 }

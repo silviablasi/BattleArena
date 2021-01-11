@@ -1,15 +1,15 @@
 class jugador {
-    constructor (token, name, x, y, d, attack, defense, vp, image, object) {
+    constructor (token, jugador) {
         this.identificador = token;
-        this.name = name;
-        this.pos_x = x;
-        this.pos_y = y;
-        this.direccion = d;
-        this.attack = attack;
-        this.defensa = defense;
-        this.puntos = vp;
-        this.imagen = image;
-        this.Objeto = object;
+        this.name = jugador.name;
+        this.pos_x = jugador.x;
+        this.pos_y = jugador.y;
+        this.direccion = jugador.direction;
+        this.attack = jugador.attack;
+        this.defensa = jugador.defense;
+        this.puntos = jugador.vitalpoints;
+        this.imagen = jugador.image;
+        this.Objeto = jugador.object;
     }
     move (direccion) {
         var xhr = new XMLHttpRequest();
@@ -57,16 +57,18 @@ class jugador {
     }
 
     foto_Nav () {
-        if (this.pos_x == 40 || this.pos_x == 0) {
-            document.getElementsByClassName("img-nav").setAttribute("src", "img/pared.jpg");
+        if ((this.pos_x == 40 && this.direccion == "N") || (this.pos_x == 0 && this.direccion == "S") || (this.pos_y == 40 && this.direccion == "E") || (this.pos_y == 0 && this.direccion == "O")) {
+            var foto = document.getElementById("img-nav");
+            foto.setAttribute("src", "img/pared.jpg");
         }
         else {
-            document.getElementsByClassName("img-nav").setAttribute("src", "img/suelo.jpg");
+            var foto2 = document.getElementById("img-nav");
+            foto2.setAttribute("src", "img/suelo.jpg");
         }
     }
 }
 
-function pulsarTecla (event) {
+/*function pulsarTecla (event) {
     var direccion;
     switch(event.keyCode){
         case 37: // Izquierda
@@ -126,4 +128,4 @@ class object {
     }
 }
 
-document.onkeydown = pulsarTecla();
+document.onkeydown = pulsarTecla();*/
