@@ -13,14 +13,14 @@ function remove () {
     if (status == 200) {
         console.log ("S'ha esborrat el jugador");
     }
-    if (confirm("Quieres crear otro jugador?")) {
+    /*if (confirm("Quieres crear otro jugador?")) {
         // si
         console.log("Nuevo jugador creado");
         spawn();
     } else {
         // no
         console.log("Salir del juego");
-    }
+    }*/
     return status;
 }
 
@@ -123,8 +123,18 @@ function respawn () {
     return status;
 }
 
-function players () {
-
+function playersObjects () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, false);
+    xhr.send();
+    var aux = JSON.parse(xhr.responseText);
+    console.log(aux);
+    var status =  xhr.status;
+    if (status == 200) {
+        console.log ("S'ha consultat la informació dels enemics i objectes");
+        map();
+    }
+    return status;
 }
 
 function map () {
