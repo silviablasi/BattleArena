@@ -4,6 +4,7 @@ var code;
 var token;
 var jugadorAux;
 var jugador1;
+var jugadorsAprop
 
 function remove () {
     var xhr = new XMLHttpRequest();
@@ -127,8 +128,8 @@ function playersObjects () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, false);
     xhr.send();
-    var aux = JSON.parse(xhr.responseText);
-    console.log(aux);
+    jugadorsAprop = JSON.parse(xhr.responseText);
+    console.log(jugadorsAprop);
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha consultat la informació dels enemics i objectes");
