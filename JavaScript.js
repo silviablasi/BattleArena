@@ -4,8 +4,14 @@ var token;
 var jugadorAux;
 var jugador1;
 var jugadorsAprop
-var matrixMinimap = [];
+
 var infoEnemics;
+
+var matrixMinimap = new Array(40);
+
+for (var i = 0; i < matrixMinimap.length; i++) {
+    matrixMinimap[i] = new Array(40);
+}
 
 function remove () {
     var xhr = new XMLHttpRequest();
@@ -226,12 +232,25 @@ function pulsarTecla (event) {
     }
 }
 
-
-
-function crearMinimapa () {
-    
-    for(var i=0; i<40; i++) {
-        matrixMinimap[i] = new Array(40);
+function ompleMinimapa() {
+    map();
+    for(var i = 0; i < infoEnemics.enemies.length; i++) {
+        var x = infoEnemics.enemies[i].x;
+        var y = infoEnemics.enemies[i].y;
+        matrixMinimap[x][y] = 1;
     }
 }
+
+function mostraMinimapa () {
+    
+    for(var i=0; i<40; i++) {
+        for(var j=0; j<40; i++) {
+            if (matrixMinimap[i][j] == 1) {
+                console.log(infoEnemics.enemies);
+            }
+        }
+    }
+}
+
+
 
