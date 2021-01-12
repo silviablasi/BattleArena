@@ -1,17 +1,63 @@
-.has-bg-img { 
-    background: url('img/battlearena_background.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: #999;
+.has-bg-img {
+  background: url("img/battlearena_background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #999;
 }
 
-body{
-    background-image: url(img/battlearena_2.jpg);
-    background-size: cover;
+body {
+  background-image: url(img/battlearena_2.jpg);
+  background-size: cover;
 }
 
 .has-background-brown {
-    background-color: #413329;
+  background-color: #413329;
+}
+
+.container {
+  position: relative;
+  width: 128px;
+}
+
+.back-element {
+  position: relative;
+  z-index: 1;
+}
+
+.front-element {
+  position: absolute !important;
+  top: 200px !important;
+  right: 105px !important;
+  z-index: 3 !important;
+}
+.is-200x200 {
+    width: 200px;
+    height: 200px;
+}
+
+.is-resized {
+    width: 200px;
+    height: 30px;
+}
+
+.is-respawn {
+    position: absolute !important;
+    top: 500px !important;
+    right: 100px !important;
+    z-index: 3 !important;
+}
+
+.is-remove {
+    position: absolute;
+    top: 550px;
+    right: 100px;
+    z-index: 3;
+}
+.is-spawn {
+    position: absolute;
+    top: 600px;
+    right: 100px;
+    z-index: 3;
 }
