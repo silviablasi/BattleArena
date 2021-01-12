@@ -1,6 +1,7 @@
 class jugador {
-    constructor (token, jugador) {
+    constructor (token, code, jugador) {
         this.identificador = token;
+        this.code = code;
         this.name = jugador.name;
         this.pos_x = jugador.x;
         this.pos_y = jugador.y;

@@ -4,7 +4,6 @@ var code;
 var token;
 var jugadorAux;
 var jugador1;
-var aux;
 
 function remove () {
     var xhr = new XMLHttpRequest();
@@ -146,7 +145,9 @@ function player () {
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha rebut la informació del jugador");
-        jugador1 = new jugador (token, jugadorAux);
+        jugador1 = new jugador (token, code, jugadorAux);
+        var jugador_local = JSON.stringify(jugador1);
+        localStorage.setItem("spawn_"+localStorage.length, jugador_local);
         jugador1.foto_Nav();
     }
     return status;
