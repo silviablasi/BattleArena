@@ -68,6 +68,13 @@ class jugador {
             foto2.setAttribute("src", "img/suelo.jpg");
         }
     }
+
+    changes_Respawn (obj) {
+        this.pos_x = obj.pos_x;
+        this.pos_y = obj.pos_y;
+        this.puntos = obj.puntos;
+        this.imagen = obj.imagen;
+    }
 }
 
 class object {

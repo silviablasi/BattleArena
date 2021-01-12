@@ -67,7 +67,6 @@ function remove () {
     return status;
 }*/
 
-
 /*function spawn () {
     function reqListener () {
         aux = JSON.parse(this.responseText);
@@ -115,6 +114,10 @@ function respawn () {
     xhr.send();
     var status =  xhr.status;
     if (status == 200) {
+        var num = localStorage.length - 1;
+        var jugador1_re = localStorage.getItem('spawn_' + num);
+        var obj = JSON.parse(jugador1_re);
+        jugador1.changes_Respawn(obj);
         console.log ("S'ha actualitzat el jugador");
     }
     return status;
@@ -147,7 +150,7 @@ function player () {
         console.log ("S'ha rebut la informació del jugador");
         jugador1 = new jugador (token, code, jugadorAux);
         var jugador_local = JSON.stringify(jugador1);
-        localStorage.setItem("spawn_"+localStorage.length, jugador_local);
+        localStorage.setItem("spawn_" + localStorage.length, jugador_local);
         jugador1.foto_Nav();
     }
     return status;
