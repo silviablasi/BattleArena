@@ -1,10 +1,11 @@
-var matrix = [];
 var group_token = "b89f9647";
 var code;
 var token;
 var jugadorAux;
 var jugador1;
 var jugadorsAprop
+var matrixMinimap = [];
+var infoEnemics;
 
 function remove () {
     var xhr = new XMLHttpRequest();
@@ -142,8 +143,8 @@ function map () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, false);
     xhr.send();
-    var aux = JSON.parse(xhr.responseText);
-    console.log(aux);
+    infoEnemics = JSON.parse(xhr.responseText);
+    console.log(infoEnemics);
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha consultat la informació");
@@ -227,9 +228,10 @@ function pulsarTecla (event) {
 
 
 
-function crear_Taulell () {
+function crearMinimapa () {
+    
     for(var i=0; i<40; i++) {
-        matrix[i] = new Array(40);
+        matrixMinimap[i] = new Array(40);
     }
 }
 
