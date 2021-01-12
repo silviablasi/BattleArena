@@ -61,3 +61,23 @@ body {
     right: 100px;
     z-index: 3;
 }
+
+.back{
+  background: url("img/Objects_Provisional.png");
+  background-size: cover;
+  height: 100%;
+}
+.textInfo{
+  color:aliceblue;
+  margin-left: 10%;
+}
+
+.textInfoSub{
+  color:aliceblue;
+  margin-left: 15%;
+}
+
+.button{
+  margin-left: 20%;
+  margin-bottom: 3%;
+}
