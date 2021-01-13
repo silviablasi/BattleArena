@@ -12,8 +12,8 @@
         <script src="JavaScript.js"></script>
         <script src="jugador.js"></script>
     </head>
-    <!-- <body onload="spawn();"> -->
-    <body>
+    <!-- <body onload="spawn()"> -->
+    <body onload="ompleMinimapa()">
         <div class="m-2">
             
             <div class="columns">
@@ -22,6 +22,7 @@
                 <div class="column">
                     <div class="back">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Objects</p>
+                        <div id="minimap">MiniMapa</div>
                     </div>
                 </div>
                 
@@ -45,6 +46,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Descripcion -->
             <div class="back">
                 <p class="title is-2 has-text-black has-background-brown">Descripción</p>
                 <p class="textInfo">Name:</p>

@@ -239,18 +239,23 @@ function ompleMinimapa() {
         var y = infoEnemics.enemies[i].y;
         matrixMinimap[x][y] = 1;
     }
+    mostraMinimapa();
 }
 
-function mostraMinimapa () {
-    
-    for(var i=0; i<40; i++) {
-        for(var j=0; j<40; i++) {
+function mostraMinimapa(){
+    var fullmap = '<table class="minimapa">'
+    for(var i=0; i<matrixMinimap.length; i++) {
+        fullmap += '<tr>'
+        for(var j=0; j<matrixMinimap[i].length; j++) {
             if (matrixMinimap[i][j] == 1) {
-                console.log(infoEnemics.enemies);
+                fullmap += '<td class="cell-enemy-red"></td>'
+            } else {
+                fullmap += '<td></td>'
             }
         }
+        fullmap += '</tr>' 
     }
+    fullmap += '</table>' 
+    document.getElementById('minimap').innerHTML = fullmap;
 }
-
-
 

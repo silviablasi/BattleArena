@@ -42,26 +42,6 @@ body {
     height: 30px;
 }
 
-.is-respawn {
-    position: absolute !important;
-    top: 500px !important;
-    right: 100px !important;
-    z-index: 3 !important;
-}
-
-.is-remove {
-    position: absolute;
-    top: 550px;
-    right: 100px;
-    z-index: 3;
-}
-.is-spawn {
-    position: absolute;
-    top: 600px;
-    right: 100px;
-    z-index: 3;
-}
-
 .back{
   background: url("img/Objects_Provisional.png");
   background-size: cover;
@@ -80,4 +60,27 @@ body {
 .button{
   margin-left: 20%;
   margin-bottom: 3%;
+}
+
+th,
+td,
+tr {
+  border: 1px;
+  border-style: ridge;
+  text-align: center;
+  height: 7px;
+  width: 7px;
+}
+
+table {
+  background-color: white;
+}
+
+.cell-enemy-red {
+    background-color: red;
+}
+
+.minimapa {
+    margin-top: 2%;
+    margin-left: 15%;
 }
