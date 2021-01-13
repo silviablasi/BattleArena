@@ -1,10 +1,17 @@
-var matrix = [];
 var group_token = "b89f9647";
 var code;
 var token;
 var jugadorAux;
 var jugador1;
 var jugadorsAprop
+
+var infoEnemics;
+
+var matrixMinimap = new Array(40);
+
+for (var i = 0; i < matrixMinimap.length; i++) {
+    matrixMinimap[i] = new Array(40);
+}
 
 function remove () {
     var xhr = new XMLHttpRequest();
@@ -141,8 +148,8 @@ function map () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, false);
     xhr.send();
-    var aux = JSON.parse(xhr.responseText);
-    console.log(aux);
+    infoEnemics = JSON.parse(xhr.responseText);
+    console.log(infoEnemics);
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha consultat la informació");
@@ -219,11 +226,35 @@ function pulsarTecla (event) {
     }
 }
 
+// actualitza el minimapa cada 1 segon
+//var updateMap = setInterval(ompleMinimapa, 1000);
 
-
-function crear_Taulell () {
-    for(var i=0; i<40; i++) {
-        matrix[i] = new Array(40);
+// omple el minimapa
+function ompleMinimapa() {
+    map();
+    for(var i = 0; i < infoEnemics.enemies.length; i++) {
+        var x = infoEnemics.enemies[i].x;
+        var y = infoEnemics.enemies[i].y;
+        matrixMinimap[x][y] = 1;
     }
+    mostraMinimapa();
+}
+
+// dibuixa la taula del minimapa en el fitxer html
+function mostraMinimapa(){
+    var fullmap = '<table class="minimapa">'
+    for(var i=0; i<matrixMinimap.length; i++) {
+        fullmap += '<tr>'
+        for(var j=0; j<matrixMinimap[i].length; j++) {
+            if (matrixMinimap[i][j] == 1) {
+                fullmap += '<td class="cell-enemy-red"></td>'
+            } else {
+                fullmap += '<td></td>'
+            }
+        }
+        fullmap += '</tr>' 
+    }
+    fullmap += '</table>' 
+    document.getElementById('minimap').innerHTML = fullmap;
 }
 

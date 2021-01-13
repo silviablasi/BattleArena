@@ -12,20 +12,17 @@
         <script src="JavaScript.js"></script>
         <script src="jugador.js"></script>
     </head>
-    <!-- <body onload="spawn();"> -->
-    <body>
+    <!-- <body onload="spawn()"> -->
+    <body onload="ompleMinimapa()">
         <div class="m-2">
             
             <div class="columns">
 
                 <!-- Objects -->
                 <div class="column">
-                    <p class="title is-2 has-text-black has-text-centered has-background-brown">Objects</p>
-                    <div class="image is-3by5">
-                        <img src="img/Objects_Provisional.png" alt="Objects & descriptions">
-                        <figure class="image is-200x200 front-element">
-                            <img class="is-rounded" src="img/MINIMAP_provisional.jpg" alt="minimap" height="10%" width="10%">
-                        </figure>
+                    <div class="back">
+                        <p class="title is-2 has-text-black has-text-centered has-background-brown">Objects</p>
+                        <div id="minimap">MiniMapa</div>
                     </div>
                 </div>
                 
@@ -40,30 +37,30 @@
 
                 <!-- Controls -->
                 <div class="column">
-                    <p class="title is-2 has-text-black has-text-centered has-background-brown">Controls</p>
-                    <figure class="image is-3by5 back-element">
-                        <img src="img/Objects_Provisional.png" alt="Controls">
-                    </figure>   
-                    <figure class="image is-16by9 front-element">
-                        <img src="img/arrowKeys.png" alt="">
-                    </figure>
-                    <button class="button is-resized is-respawn is-primary is-outlined" onclick="respawn();">Respawn</button>
-                    <button class="button is-resized is-remove is-primary is-outlined" onclick="remove();">Delete Player</button>
-                    <button class="button is-resized is-spawn is-primary is-outlined" onclick="spawn();">Start Game</button>
-                    <!-- <button class="button" onclick="attack();">Kill Player</button> -->
+                    <div class="back">
+                        <p class="title is-2 has-text-black has-text-centered has-background-brown">Controls</p>
+                        <button class="button is-resized is-primary is-outlined " onclick="respawn();">Respawn</button>
+                        <button class="button is-resized is-primary is-outlined" onclick="remove();">Delete Player</button>
+                        <button class="button is-resized is-primary is-outlined" onclick="spawn();">Start Game</button>
+                        <!-- <button class="button" onclick="attack();">Kill Player</button> -->
+                    </div>
                 </div>
             </div>
-            <p class="title is-2 has-text-black has-background-brown">Descripción</p>
-            <p>Name:</p>
-            <p id="namePlayer"></p>
-            <p>Position X:</p>
-            <p id="playerPositionX"></p>
-            <p>Position Y:</p>
-            <p id="playerPositionY"></p>
-            <p>Orientacion:</p>
-            <p id="playerOrientation"></p>
-            <p>Points:</p>
-            <p id="playerPoints"></p>
+
+            <!-- Descripcion -->
+            <div class="back">
+                <p class="title is-2 has-text-black has-background-brown">Descripción</p>
+                <p class="textInfo">Name:</p>
+                <p class="textInfoSub" id="namePlayer"></p>
+                <p class="textInfo">Position X:</p>
+                <p class="textInfoSub" id="playerPositionX"></p>
+                <p class="textInfo">Position Y:</p>
+                <p class="textInfoSub" id="playerPositionY"></p>
+                <p class="textInfo">Orientacion:</p>
+                <p class="textInfoSub" id="playerOrientation"></p>
+                <p class="textInfo">Points:</p>
+                <p class="textInfoSub" id="playerPoints"></p>
+            </div>
         </div>
     </body>
 </html>
