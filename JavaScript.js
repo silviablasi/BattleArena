@@ -232,6 +232,10 @@ function pulsarTecla (event) {
     }
 }
 
+// actualitza el minimapa cada 1 segon
+var updateMap = setInterval(ompleMinimapa, 1000);
+
+// omple el minimapa
 function ompleMinimapa() {
     map();
     for(var i = 0; i < infoEnemics.enemies.length; i++) {
@@ -242,6 +246,7 @@ function ompleMinimapa() {
     mostraMinimapa();
 }
 
+// dibuixa la taula del minimapa en el fitxer html
 function mostraMinimapa(){
     var fullmap = '<table class="minimapa">'
     for(var i=0; i<matrixMinimap.length; i++) {
