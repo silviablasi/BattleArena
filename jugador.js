@@ -47,34 +47,44 @@ class jugador {
                 console.log ("S'ha girat cap a la dreta");
                 break;
         }
+        document.getElementById("namePlayer").textContent = jugador1.name;
+        document.getElementById("playerPositionX").textContent = jugador1.pos_x;
+        document.getElementById("playerPositionY").textContent = jugador1.pos_y;
+        document.getElementById("playerOrientation").textContent = jugador1.direccion;
+        document.getElementById("playerPoints").textContent = jugador1.puntos;
     }
     move () {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, false);
         xhr.send();
         var status = xhr.status;
-        if (status == 200) {
-            this.foto_Nav();
-        }
+        if (status == 200) {}
         else {
             console.warn("Error! No te puedes mover hacia esa dirección");
         }
-                    //avanzar
-                    switch (this.direccion) {
-                        case "N":
-                            this.pos_y ++;  
-                        break;
-                        case "S":
-                            this.pos_y --;  
-                        break;
-                        case "E":
-                            this.pos_x ++;  
-                        break;
-                        case "O":
-                            this.pos_x --;  
-                        break;
-                    }
-                    console.log ("S'ha mogut el jugador");
+        //avanzar
+        switch (this.direccion) {
+            case "N":
+                this.pos_y ++;  
+            break;
+            case "S":
+                this.pos_y --;  
+            break;
+            case "E":
+                this.pos_x ++;  
+            break;
+            case "O":
+                this.pos_x --;  
+            break;
+        }
+        document.getElementById("namePlayer").textContent = jugador1.name;
+        document.getElementById("playerPositionX").textContent = jugador1.pos_x;
+        document.getElementById("playerPositionY").textContent = jugador1.pos_y;
+        document.getElementById("playerOrientation").textContent = jugador1.direccion;
+        document.getElementById("playerPoints").textContent = jugador1.puntos;
+        playersObjects();
+        this.foto_Nav();
+        console.log ("S'ha mogut el jugador");
         return status;
     }
 
