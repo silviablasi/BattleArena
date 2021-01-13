@@ -233,7 +233,7 @@ function pulsarTecla (event) {
 }
 
 // actualitza el minimapa cada 1 segon
-var updateMap = setInterval(ompleMinimapa, 1000);
+//var updateMap = setInterval(ompleMinimapa, 1000);
 
 // omple el minimapa
 function ompleMinimapa() {
