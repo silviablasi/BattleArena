@@ -133,7 +133,6 @@ function playersObjects () {
     var status =  xhr.status;
     if (status == 200) {
         console.log ("S'ha consultat la informació dels enemics i objectes");
-        map();
     }
     return status;
 }
@@ -175,23 +174,18 @@ function player () {
 document.addEventListener('keydown', pulsarTecla);
 
 function pulsarTecla (event) {
-    var direccion;
+    var opcion;
     switch(event.keyCode){
-        case 37: // Izquierda
-            direccion = "O";   
-            jugador1.move(direccion);   
+        case 37: // Girar izquierda
+            opcion = 1;   
+            jugador1.girar(opcion);   
             break;
-        case 38: // Arriba
-            direccion = "N";
-            jugador1.move(direccion);    
+        case 38: // Avanzar
+            jugador1.move();    
             break;
-        case 39: // Derecha
-            direccion = "E";
-            jugador1.move(direccion);  
-            break;
-        case 40: // Bajar
-            direccion = "S";
-            jugador1.move(direccion);  
+        case 39: // Girar derecha
+            opcion = 2;
+            jugador1.girar(opcion);  
             break;
         //no està bé encara
         case 32: // Doble salto hacia adelante
