@@ -6,9 +6,9 @@ var jugador1;
 var jugadorsAprop
 
 var infoEnemics;
-
 var matrixMinimap = new Array(40);
 
+// crea array del minimapa
 for (var i = 0; i < matrixMinimap.length; i++) {
     matrixMinimap[i] = new Array(40);
 }
@@ -237,24 +237,36 @@ function ompleMinimapa() {
         var y = infoEnemics.enemies[i].y;
         matrixMinimap[x][y] = 1;
     }
+
+    for (var i = 0; i < infoEnemics.objects.length; i++) {
+        var x = infoEnemics.objects[i].x;
+        var y = infoEnemics.objects[i].y;
+        matrixMinimap[y][x] = 2;
+    }
+
+    /* matrixMinimap[jugador1.pos_x][jugador1.pos_y] = 2; */
     mostraMinimapa();
 }
 
 // dibuixa la taula del minimapa en el fitxer html
 function mostraMinimapa(){
-    var fullmap = '<table class="minimapa">'
-    for(var i=0; i<matrixMinimap.length; i++) {
-        fullmap += '<tr>'
+    var fullmap = '<table class="minimapa">';
+    for(var i=matrixMinimap.length -1; i >= 0; i--) {
+        fullmap += '<tr>';
         for(var j=0; j<matrixMinimap[i].length; j++) {
             if (matrixMinimap[i][j] == 1) {
-                fullmap += '<td class="cell-enemy-red"></td>'
+                fullmap += '<td class="cell-enemy-red"></td>';
             } else {
-                fullmap += '<td></td>'
+                if (matrixMinimap[i][j] == 2) {
+                    fullmap += '<td class="cell-object-black"></td>';
+                } else {
+                    fullmap += '<td></td>';
+                }
             }
         }
-        fullmap += '</tr>' 
+        fullmap += '</tr>';
     }
-    fullmap += '</table>' 
+    fullmap += '</table>';
     document.getElementById('minimap').innerHTML = fullmap;
 }
 

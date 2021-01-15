@@ -80,6 +80,15 @@ table {
     background-color: red;
 }
 
+.cell-player-blue {
+    background-color: blue;
+}
+
+.cell-object-black {
+    background-color: black;
+
+}
+
 .minimapa {
     margin-top: 2%;
     margin-left: 15%;
