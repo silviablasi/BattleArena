@@ -21,15 +21,19 @@ class jugador {
             case 1:
                 if (this.direccion == "N") {
                     this.direccion = "O"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 90 + "deg)");
                 }
                 else if (this.direccion == "S") {
                     this.direccion = "E"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 270 + "deg)");
                 }
                 else if (this.direccion == "E") {
                     this.direccion = "N";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 0 + "deg)");
                 }
                 else if (this.direccion == "O") {
                     this.direccion = "S";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 180 + "deg)");
                 }
                 console.log ("S'ha girat cap a l'esquerra");
                 break;
@@ -37,15 +41,19 @@ class jugador {
             case 2:
                 if (this.direccion == "N") {
                     this.direccion = "E"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 270 + "deg)");
                 }
                 else if (this.direccion == "S") {
                     this.direccion = "O"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 90 + "deg)");
                 }
                 else if (this.direccion == "E") {
                     this.direccion = "S";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 180 + "deg)");
                 }
                 else if (this.direccion == "O") {
                     this.direccion = "N";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 0 + "deg)");
                 }
                 console.log ("S'ha girat cap a la dreta");
                 break;

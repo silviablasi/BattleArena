@@ -60,6 +60,7 @@ body {
 .button{
   margin-left: 20%;
   margin-bottom: 3%;
+  width: 75%;
 }
 
 th,
@@ -92,4 +93,10 @@ table {
 .minimapa {
     margin-top: 2%;
     margin-left: 15%;
+}
+
+#brujula {
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 22%;
 }
