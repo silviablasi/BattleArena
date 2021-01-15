@@ -1,3 +1,5 @@
+var aux4;
+
 class jugador {
     constructor (token, code, jugador) {
         this.identificador = token;
@@ -12,6 +14,7 @@ class jugador {
         this.imagen = jugador.image;
         this.Objeto = jugador.object;
     }
+    
     girar (opcion) {
         switch (opcion) {
             //girar hacia la izquierda
@@ -53,6 +56,7 @@ class jugador {
         document.getElementById("playerOrientation").textContent = jugador1.direccion;
         document.getElementById("playerPoints").textContent = jugador1.puntos;
     }
+
     move () {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, false);
@@ -62,33 +66,34 @@ class jugador {
         else {
             console.warn("Error! No te puedes mover hacia esa dirección");
         }
-        //avanzar
-        switch (this.direccion) {
-            case "N":
-                this.pos_y ++;  
-            break;
-            case "S":
-                this.pos_y --;  
-            break;
-            case "E":
-                this.pos_x ++;  
-            break;
-            case "O":
-                this.pos_x --;  
-            break;
-        }
-        document.getElementById("namePlayer").textContent = jugador1.name;
-        document.getElementById("playerPositionX").textContent = jugador1.pos_x;
-        document.getElementById("playerPositionY").textContent = jugador1.pos_y;
-        document.getElementById("playerOrientation").textContent = jugador1.direccion;
-        document.getElementById("playerPoints").textContent = jugador1.puntos;
-        playersObjects();
-        this.foto_Nav();
+        player();
         console.log ("S'ha mogut el jugador");
         return status;
     }
 
     attack () {
+        var status;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://battlearena.danielamo.info/api/attack/" + group_token + "/" + this.identificador + "/" + this.direccion, true);
+        xhr.onload = function () {
+            status = xhr.status;
+            if (status == 200) {
+                var puntos_menos = JSON.parse(xhr.responseText);
+                this.puntos = this.puntos - puntos_menos;
+                console.log ("S'ha lluitat contra algun jugador");
+            }
+            else {
+                console.error(xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.error(xhr.statusText);
+        };
+        xhr.send();
+        return status;
+    }
+
+    /*attack () {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/attack/" + group_token + "/" + this.identificador + "/" + this.direccion, false);
         xhr.send();
@@ -102,7 +107,7 @@ class jugador {
             console.warn("Error! No te puedes atacar");
         }
         return status;
-    }
+    }*/
 
     foto_Nav () {
         if ((this.pos_x == 39 && this.direccion == "E") || (this.pos_x == 0 && this.direccion == "O") || (this.pos_y == 39 && this.direccion == "N") || (this.pos_y == 0 && this.direccion == "S")) {
@@ -113,13 +118,6 @@ class jugador {
             var foto2 = document.getElementById("img-nav");
             foto2.setAttribute("src", "img/suelo.jpg");
         }
-    }
-
-    changes_Respawn (obj) {
-        this.pos_x = obj.pos_x;
-        this.pos_y = obj.pos_y;
-        this.puntos = obj.puntos;
-        this.imagen = obj.imagen;
     }
 }
 

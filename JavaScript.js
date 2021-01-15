@@ -3,8 +3,7 @@ var code;
 var token;
 var jugadorAux;
 var jugador1;
-var jugadorsAprop
-
+var jugadorsAprop;
 var infoEnemics;
 
 var matrixMinimap = new Array(40);
@@ -13,7 +12,7 @@ for (var i = 0; i < matrixMinimap.length; i++) {
     matrixMinimap[i] = new Array(40);
 }
 
-function remove () {
+/*function remove () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/remove/" + group_token + "/" + token + "/" + code, false);
     xhr.send();
@@ -21,14 +20,34 @@ function remove () {
     if (status == 200) {
         console.log ("S'ha esborrat el jugador");
     }
-    /*if (confirm("Quieres crear otro jugador?")) {
+    if (confirm("Quieres crear otro jugador?")) {
         // si
         console.log("Nuevo jugador creado");
         spawn();
     } else {
         // no
         console.log("Salir del juego");
-    }*/
+    }
+    return status;
+}*/
+
+function remove () {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/remove/" + group_token + "/" + token + "/" + code, true);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            console.log ("S'ha esborrat el jugador");
+        }
+        else {
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
     return status;
 }
 
@@ -50,7 +69,7 @@ function remove () {
         });
 }*/
 
-/*function spawn () {
+function spawn () {
     var status;
     var xhr = new XMLHttpRequest();
     var nombre = prompt("Escribe el nombre de tu personaje: ");
@@ -61,8 +80,8 @@ function remove () {
             aux = JSON.parse(this.responseText);
             token = aux.token;
             code = aux.code;
+            player();
             console.log ("S'ha creat el jugador");
-            // crear_Taulell ();
         }
         else {
             console.error(xhr.statusText);
@@ -73,11 +92,11 @@ function remove () {
     };
     xhr.send();
     return status;
-}*/
+}
 
 /*function spawn () {
     function reqListener () {
-        aux = JSON.parse(this.responseText);
+        var aux = JSON.parse(this.responseText);
         token = aux.token;
         code = aux.code;
     }
@@ -91,7 +110,6 @@ function remove () {
     if (status == 200) {
         console.log ("S'ha creat el jugador");
         player();
-        // crear_Taulell ();
     }
     else {
         console.log(status);
@@ -99,7 +117,7 @@ function remove () {
     return status;
 }*/
 
-function spawn () {
+/*function spawn () {
     var xhr = new XMLHttpRequest();
     var nombre = prompt("Escribe el nombre de tu personaje: ");
     xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre, false);
@@ -111,14 +129,34 @@ function spawn () {
     if (status == 200) {
         console.log ("S'ha creat el jugador");
         player();
-        // crear_Taulell ();
     }
+    return status;
+}*/
+
+function respawn () {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/respawn/" + group_token + "/" + token, true);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            console.log ("S'ha actualitzat el jugador");
+            player();
+        }
+        else {
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
     return status;
 }
 
-function respawn () {
+/*function respawn () {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + token, false);
+    xhr.open("GET", "http://battlearena.danielamo.info/api/respawn/" + group_token + "/" + token, false);
     xhr.send();
     var status =  xhr.status;
     if (status == 200) {
@@ -129,9 +167,31 @@ function respawn () {
         console.log ("S'ha actualitzat el jugador");
     }
     return status;
-}
+}*/
 
 function playersObjects () {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, true);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            jugadorsAprop = JSON.parse(xhr.responseText);
+            console.log(jugadorsAprop);
+            console.log ("S'ha consultat la informació dels enemics i objectes");
+        }
+        else {
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
+    return status;
+}
+
+/*function playersObjects () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, false);
     xhr.send();
@@ -142,9 +202,31 @@ function playersObjects () {
         console.log ("S'ha consultat la informació dels enemics i objectes");
     }
     return status;
-}
+}*/
 
 function map () {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, true);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            infoEnemics = JSON.parse(xhr.responseText);
+            console.log(infoEnemics);
+            console.log ("S'ha consultat la informació");
+        }
+        else {
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
+    return status;
+}
+
+/*function map () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, false);
     xhr.send();
@@ -155,9 +237,39 @@ function map () {
         console.log ("S'ha consultat la informació");
     }
     return status;
-}
+}*/
 
 function player () {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/player/" + group_token + "/" + token, true);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            jugadorAux = JSON.parse(xhr.responseText);
+            console.log ("S'ha rebut la informació del jugador");
+            jugador1 = new jugador (token, code, jugadorAux);
+            var jugador_local = JSON.stringify(jugador1);
+            localStorage.setItem("spawn_" + localStorage.length, jugador_local);
+            jugador1.foto_Nav();
+            document.getElementById("namePlayer").textContent = jugador1.name;
+            document.getElementById("playerPositionX").textContent = jugador1.pos_x;
+            document.getElementById("playerPositionY").textContent = jugador1.pos_y;
+            document.getElementById("playerOrientation").textContent = jugador1.direccion;
+            document.getElementById("playerPoints").textContent = jugador1.puntos;
+        }
+        else {
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
+    return status;
+}
+
+/*function player () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/player/" + group_token + "/" + token, false);
     xhr.send();
@@ -176,7 +288,7 @@ function player () {
         document.getElementById("playerPoints").textContent = jugador1.puntos;
     }
     return status;
-}
+}*/
 
 document.addEventListener('keydown', pulsarTecla);
 
