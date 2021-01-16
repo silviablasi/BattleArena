@@ -387,34 +387,34 @@ function pulsarTecla (event) {
         // Attck Keys
         case 87:    // W - Front attack
             switch (jugador1.direccion) {
-                case "N": jugador1.attack("N"); break;
-                case "S": jugador1.attack("S"); break;
-                case "O": jugador1.attack("O"); break;
-                case "E": jugador1.attack("E"); break;
+                case "N": jugador1.atacar("N"); break;
+                case "S": jugador1.atacar("S"); break;
+                case "O": jugador1.atacar("O"); break;
+                case "E": jugador1.atacar("E"); break;
             }
             break;
         case 83:    // S - Back attack
             switch (jugador1.direccion) {
-                case "N": jugador1.attack("N"); break;
-                case "S": jugador1.attack("S"); break;
-                case "O": jugador1.attack("O"); break;
-                case "E": jugador1.attack("E"); break;
+                case "N": jugador1.atacar("N"); break;
+                case "S": jugador1.atacar("S"); break;
+                case "O": jugador1.atacar("O"); break;
+                case "E": jugador1.atacar("E"); break;
             }
             break;
         case 68:    // D - Right attack
             switch (jugador1.direccion) {
-                case "N": jugador1.attack("N"); break;
-                case "S": jugador1.attack("S"); break;
-                case "O": jugador1.attack("O"); break;
-                case "E": jugador1.attack("E"); break;
+                case "N": jugador1.atacar("N"); break;
+                case "S": jugador1.atacar("S"); break;
+                case "O": jugador1.atacar("O"); break;
+                case "E": jugador1.atacar("E"); break;
             }
             break;
         case 65:    // A - Left attack
             switch (jugador1.direccion) {
-                case "N": jugador1.attack("N"); break;
-                case "S": jugador1.attack("S"); break;
-                case "O": jugador1.attack("O"); break;
-                case "E": jugador1.attack("E"); break;
+                case "N": jugador1.atacar("N"); break;
+                case "S": jugador1.atacar("S"); break;
+                case "O": jugador1.atacar("O"); break;
+                case "E": jugador1.atacar("E"); break;
             }
             break;
     }

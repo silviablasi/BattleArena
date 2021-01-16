@@ -100,7 +100,7 @@ class jugador {
         return status;
     }*/
 
-    attack (direccio) {
+    atacar (direccio) {
         console.log("FAIL");
         var status;
         var xhr = new XMLHttpRequest();
@@ -113,7 +113,11 @@ class jugador {
                 console.log ("S'ha lluitat contra algun jugador");
             }
             else {
-                console.error(xhr.statusText);
+                if (status >= 500 && status < 510) {
+                    console.error("Hay una pared, el enemigo es un fantasma o no hay nadie en la casilla");
+                } else {
+                    console.error(xhr.statusText);
+                }
             }
         };
         xhr.onerror = function () {
