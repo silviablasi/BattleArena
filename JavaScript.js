@@ -324,19 +324,27 @@ function pulsarTecla (event) {
         // Move Keys
         case 37: // Girar izquierda con la fecha de la izquierda
             opcion = 1;   
+            document.getElementById("enemic").setAttribute("src", "");
             jugador1.girar(opcion);   
+            mostrarEnemic(); 
             break;
         case 38: // Avanzar con la flecha hacia arriba
-            jugador1.move();    
+            document.getElementById("enemic").setAttribute("src", "");
+            jugador1.move();   
+            mostrarEnemic();
             break;
         case 39: // Girar derecha con la fecha de la derecha
             opcion = 2;
+            document.getElementById("enemic").setAttribute("src", "");
             jugador1.girar(opcion);  
+            mostrarEnemic();
             break;
         case 16: // Doble salto hacia adelante con shift
             if ((jugador1.pos_x < 38 && jugador1.pos_x > 1) || (jugador1.pos_y < 38 && jugador1.pos_y > 1)) {
+                document.getElementById("enemic").setAttribute("src", "");
                 jugador1.move(); 
                 jugador1.move(); 
+                mostrarEnemic();
             }
             else {
                 console.warn("Error! No puedes hacer un salto doble");
@@ -378,6 +386,34 @@ function pulsarTecla (event) {
             break;
     }
 }
+
+function mostrarEnemic () {
+    var trobat = false;
+    for (var i = 0; i < jugadorsAprop.enemies.length && !trobat; i++) {
+        console.log (jugadorsAprop.enemies[i].x +"=="+ jugador1.pos_x +"&&"+ jugadorsAprop.enemies[i].y +">"+ jugador1.pos_y + "&&"+ jugador1.direccion +"== N"+ i);
+        if ((jugadorsAprop.enemies[i].x == jugador1.pos_x) && (jugadorsAprop.enemies[i].y > jugador1.pos_y) && (jugador1.direccion == "N")) {
+            document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
+            console.log("1");
+            trobat = true;
+        }
+        if ((jugadorsAprop.enemies[i].x == jugador1.pos_x) && (jugadorsAprop.enemies[i].y < jugador1.pos_y) && (jugador1.direccion == "S")) {
+            document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
+            console.log("2");
+            trobat = true;
+        }
+        if ((jugadorsAprop.enemies[i].x < jugador1.pos_x) && (jugadorsAprop.enemies[i].y == jugador1.pos_y) && (jugador1.direccion == "O")) {
+            document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
+            console.log("3");
+            trobat = true;
+        }
+        if ((jugadorsAprop.enemies[i].x > jugador1.pos_x) && (jugadorsAprop.enemies[i].y == jugador1.pos_y) && (jugador1.direccion == "E")) {
+            document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
+            console.log("4");
+            trobat = true;
+        }
+    }
+}
+
 
 // vuida el minimapa per posar caselles blanques
 function buidaMapa () {
