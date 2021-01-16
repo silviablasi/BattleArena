@@ -261,6 +261,7 @@ function player () {
             var jugador_local = JSON.stringify(jugador1);
             localStorage.setItem("spawn_" + localStorage.length, jugador_local);
             jugador1.foto_Nav();
+            mostrarEnemic();
             document.getElementById("namePlayer").textContent = jugador1.name;
             document.getElementById("playerPositionX").textContent = jugador1.pos_x;
             document.getElementById("playerPositionY").textContent = jugador1.pos_y;
