@@ -6,6 +6,7 @@ var jugador1;
 var jugadorsAprop;
 var infoEnemics;
 var matrixMinimap = new Array(40);
+var viu = false;
 
 // crea array del minimapa
 for (var i = 0; i < matrixMinimap.length; i++) {
@@ -39,6 +40,7 @@ function remove () {
         status = xhr.status;
         if (status == 200) {
             console.log ("S'ha esborrat el jugador");
+            viu = false;
         }
         else {
             console.error(xhr.statusText);
@@ -82,6 +84,7 @@ function spawn () {
             code = aux.code;
             player();
             console.log ("S'ha creat el jugador");
+            viu = true;
         }
         else {
             console.error(xhr.statusText);
@@ -142,6 +145,7 @@ function respawn () {
         if (status == 200) {
             console.log ("S'ha actualitzat el jugador");
             player();
+            viu = true;
         }
         else {
             console.error(xhr.statusText);
@@ -169,7 +173,30 @@ function respawn () {
     return status;
 }*/
 
-function playersObjects () {
+var playersObjects = new Promise (function (myResolve2, myReject2) {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, false);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            jugadorsAprop = JSON.parse(xhr.responseText);
+            console.log ("S'ha consultat la informació dels enemics i objectes");
+            myResolve2(jugadorsAprop);
+        }
+        else {
+            console.error(xhr.statusText);
+            myReject2(alert("Error"));
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
+    return status;
+})
+
+/*function playersObjects () {
     var status;
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, true);
@@ -189,7 +216,7 @@ function playersObjects () {
     };
     xhr.send();
     return status;
-}
+}*/
 
 /*function playersObjects () {
     var xhr = new XMLHttpRequest();
@@ -204,7 +231,31 @@ function playersObjects () {
     return status;
 }*/
 
-function map () {
+var map = new Promise (function (myResolve, myReject) {
+    var status;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, false);
+    xhr.onload = function () {
+        status = xhr.status;
+        if (status == 200) {
+            infoEnemics = JSON.parse(xhr.responseText);
+            console.log ("S'ha consultat la informació");
+            myResolve(infoEnemics);
+        }
+        else {
+            console.error(xhr.statusText);
+            myReject(alert("Error"));
+        }
+    };
+    xhr.onerror = function () {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
+    return status;
+})
+    
+
+/*function map () {
     var status;
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, true);
@@ -212,7 +263,6 @@ function map () {
         status = xhr.status;
         if (status == 200) {
             infoEnemics = JSON.parse(xhr.responseText);
-            console.log(infoEnemics);
             console.log ("S'ha consultat la informació");
         }
         else {
@@ -224,7 +274,7 @@ function map () {
     };
     xhr.send();
     return status;
-}
+}*/
 
 /*function map () {
     var xhr = new XMLHttpRequest();
@@ -371,7 +421,7 @@ function pulsarTecla (event) {
 }
 
 // vuida el minimapa per posar caselles blanques
-function vuidaMapa () {
+function buidaMapa () {
     for (var i = 0; i < 40; i++) {
         for (var j = 0; j < 40; j++) {
             matrixMinimap[i][j] = 0;   
@@ -384,25 +434,31 @@ var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per 
 
 // omple el minimapa
 function ompleMinimapa() {
-    vuidaMapa ();
-    map();
-    for(var i = 0; i < infoEnemics.enemies.length; i++) {
-        var x = infoEnemics.enemies[i].x;
-        var y = infoEnemics.enemies[i].y;
-        matrixMinimap[y][x] = 1;
+    
+    if(viu){
+        buidaMapa ();
+        map.then(function(value) {
+            for(var i = 0; i < value.enemies.length; i++) {
+                var x = value.enemies[i].x;
+                var y = value.enemies[i].y;
+                matrixMinimap[y][x] = 1;
+            }
+
+            for (var i = 0; i < value.objects.length; i++) {
+                var x = value.objects[i].x;
+                var y = value.objects[i].y;
+                matrixMinimap[y][x] = 2;
+            }
+
+            matrixMinimap[jugador1.pos_y][jugador1.pos_x] = 3;
+
+            mostraMinimapa();
+            mostraEnemicsAprop();
+            //mostraObjectesAprop();
+        },
+        function(error) {console.log(error)}
+        )
     }
-
-    for (var i = 0; i < infoEnemics.objects.length; i++) {
-        var x = infoEnemics.objects[i].x;
-        var y = infoEnemics.objects[i].y;
-        matrixMinimap[y][x] = 2;
-    }
-
-    matrixMinimap[jugador1.pos_y][jugador1.pos_x] = 3;
-
-    mostraMinimapa();
-    mostraEnemicsAprop();
-    //mostraObjectesAprop();
 }
 
 // dibuixa la taula del minimapa en el fitxer html
@@ -425,15 +481,18 @@ function mostraMinimapa(){
 }
 
 function mostraEnemicsAprop () {
-    playersObjects();
-    var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
-    enemicsAprop += '<thead>Enemics</thead>';
-    enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
-    for (var i = 0; i < jugadorsAprop.enemies.length; i++) {
-        enemicsAprop += "<tr><td>" + jugadorsAprop.enemies[i].x + "</td><td>" + jugadorsAprop.enemies[i].y + "</td><td>" + jugadorsAprop.enemies[i].direction + "</td><td>" + jugadorsAprop.enemies[i].vitalpoints + "</td></tr>";
-    }
-    enemicsAprop += '</table>'
-    document.getElementById('tabla-enemics').innerHTML = enemicsAprop;
+    playersObjects.then(function (value) {
+        var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
+        //enemicsAprop += '<thead>Enemics</thead>';
+        enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
+        for (var i = 0; i < value.enemies.length; i++) {
+            enemicsAprop += "<tr><td>" + value.enemies[i].x + "</td><td>" + value.enemies[i].y + "</td><td>" + value.enemies[i].direction + "</td><td>" + value.enemies[i].vitalpoints + "</td></tr>";
+        }
+        enemicsAprop += '</table>'
+        document.getElementById('tabla-enemics').innerHTML = enemicsAprop;
+    },
+        function(error) {console.log(error)}
+    )
 }
 
 /* function mostraObjectesAprop () {
