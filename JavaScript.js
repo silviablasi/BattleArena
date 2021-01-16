@@ -350,7 +350,7 @@ function buidaMapa () {
 
 // actualitza el minimapa cada 1 segon
 <<<<<<< HEAD
-//var updateMap = setInterval(ompleMinimapa, 1000);
+//var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per actualizar el mapa
 =======
 //var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per actualizar el mapa
 >>>>>>> ffe32401d02501dd0518c1ab54067d03f0c8cc4c
