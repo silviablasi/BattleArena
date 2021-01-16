@@ -100,10 +100,11 @@ class jugador {
         return status;
     }*/
 
-    attack () {
+    attack (direccio) {
+        console.log("FAIL");
         var status;
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://battlearena.danielamo.info/api/attack/" + group_token + "/" + this.identificador + "/" + this.direccion, true);
+        xhr.open("GET", "http://battlearena.danielamo.info/api/attack/" + group_token + "/" + this.identificador + "/" + direccio, true);
         xhr.onload = function () {
             status = xhr.status;
             if (status == 200) {

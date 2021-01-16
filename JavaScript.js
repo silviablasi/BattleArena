@@ -321,7 +321,7 @@ document.addEventListener('keydown', pulsarTecla);
 function pulsarTecla (event) {
     var opcion;
     switch(event.keyCode){
-
+        // Move Keys
         case 37: // Girar izquierda con la fecha de la izquierda
             opcion = 1;   
             jugador1.girar(opcion);   
@@ -342,8 +342,39 @@ function pulsarTecla (event) {
                 console.warn("Error! No puedes hacer un salto doble");
             }
             break;
-        case 13: // Lucha
-            attack();
+
+        // Attck Keys
+        case 87:    // W - Front attack
+            switch (jugador1.direccion) {
+                case "N": jugador1.attack("N"); break;
+                case "S": jugador1.attack("S"); break;
+                case "O": jugador1.attack("O"); break;
+                case "E": jugador1.attack("E"); break;
+            }
+            break;
+        case 83:    // S - Back attack
+            switch (jugador1.direccion) {
+                case "N": jugador1.attack("N"); break;
+                case "S": jugador1.attack("S"); break;
+                case "O": jugador1.attack("O"); break;
+                case "E": jugador1.attack("E"); break;
+            }
+            break;
+        case 68:    // D - Right attack
+            switch (jugador1.direccion) {
+                case "N": jugador1.attack("N"); break;
+                case "S": jugador1.attack("S"); break;
+                case "O": jugador1.attack("O"); break;
+                case "E": jugador1.attack("E"); break;
+            }
+            break;
+        case 65:    // A - Left attack
+            switch (jugador1.direccion) {
+                case "N": jugador1.attack("N"); break;
+                case "S": jugador1.attack("S"); break;
+                case "O": jugador1.attack("O"); break;
+                case "E": jugador1.attack("E"); break;
+            }
             break;
     }
 }
@@ -473,9 +504,9 @@ function mostraEnemicsAprop () {
     playersObjects();
     var objectesAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable objectes-aprop">';
     objectesAprop += '<thead>Enemics</thead>';
-    objectesAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
+    objectesAprop += '<tr><th>Nom Objecte</th><th>Atac</th><th>Defensa</th></tr>';
     for (var i = 0; i < jugadorsAprop.objects.length; i++) {
-        //objectesAprop += "<tr><td>" + objectesAprop.objects[i].x + "</td><td>" + objectesAprop.objects[i].y + "</td><td>" + objectesAprop.objects[i].direction + "</td><td>" + objectesAprop.objects[i].vitalpoints + "</td></tr>";
+        objectesAprop += "<tr><td>" + objectesAprop.objects[i].nom_obj + "</td><td>" + objectesAprop.objects[i].valor_ataque + "</td><td>" + objectesAprop.objects[i].valor_defensa + "</td></tr>";
     }
     objectesAprop += '</table>';
     document.getElementById('tabla-objectes').innerHTML = objectesAprop;
