@@ -312,38 +312,22 @@ document.addEventListener('keydown', pulsarTecla);
 function pulsarTecla (event) {
     var opcion;
     switch(event.keyCode){
-        case 37: // Girar izquierda
+
+        case 37: // Girar izquierda con la fecha de la izquierda
             opcion = 1;   
             jugador1.girar(opcion);   
             break;
-        case 38: // Avanzar
+        case 38: // Avanzar con la flecha hacia arriba
             jugador1.move();    
             break;
-        case 39: // Girar derecha
+        case 39: // Girar derecha con la fecha de la derecha
             opcion = 2;
             jugador1.girar(opcion);  
             break;
-        //no està bé encara
-        case 32: // Doble salto hacia adelante
-            if (this.pos_x <= 38 || this.pos_y <= 38) {
-                switch(direccion) {
-                    case "E":
-                        this.pos_y = this.pos_y - 2;  
-                        jugador1.move(direccion);  
-                        break;
-                    case "N":
-                        this.pos_x = this.pos_x + 2;  
-                        jugador1.move(direccion);  
-                        break;
-                    case "O":
-                        this.pos_y = this.pos_y + 2; 
-                        jugador1.move(direccion);  
-                        break;
-                    case "S":
-                        this.pos_x = this.pos_x - 2;  
-                        jugador1.move(direccion);  
-                        break;
-                }
+        case 16: // Doble salto hacia adelante con shift
+            if ((jugador1.pos_x < 38 && jugador1.pos_x > 1) || (jugador1.pos_y < 38 && jugador1.pos_y > 1)) {
+                jugador1.move(); 
+                jugador1.move(); 
             }
             else {
                 console.warn("Error! No puedes hacer un salto doble");
