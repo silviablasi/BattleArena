@@ -6,6 +6,7 @@ var jugador1;
 var jugadorsAprop;
 var infoEnemics;
 var matrixMinimap = new Array(40);
+var viu = false;
 
 // crea array del minimapa
 for (var i = 0; i < matrixMinimap.length; i++) {
@@ -39,6 +40,7 @@ function remove () {
         status = xhr.status;
         if (status == 200) {
             console.log ("S'ha esborrat el jugador");
+            viu = false;
         }
         else {
             console.error(xhr.statusText);
@@ -82,6 +84,7 @@ function spawn () {
             code = aux.code;
             player();
             console.log ("S'ha creat el jugador");
+            viu = true;
         }
         else {
             console.error(xhr.statusText);
@@ -142,6 +145,7 @@ function respawn () {
         if (status == 200) {
             console.log ("S'ha actualitzat el jugador");
             player();
+            viu = true;
         }
         else {
             console.error(xhr.statusText);
@@ -349,29 +353,33 @@ function buidaMapa () {
 }
 
 // actualitza el minimapa cada 1 segon
-//var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per actualizar el mapa
+var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per actualizar el mapa
 
 // omple el minimapa
 function ompleMinimapa() {
-    buidaMapa ();
-    map();
-    for(var i = 0; i < infoEnemics.enemies.length; i++) {
-        var x = infoEnemics.enemies[i].x;
-        var y = infoEnemics.enemies[i].y;
-        matrixMinimap[y][x] = 1;
+    
+    if(viu){
+        buidaMapa ();
+        map();
+
+        for(var i = 0; i < infoEnemics.enemies.length; i++) {
+            var x = infoEnemics.enemies[i].x;
+            var y = infoEnemics.enemies[i].y;
+            matrixMinimap[y][x] = 1;
+        }
+
+        for (var i = 0; i < infoEnemics.objects.length; i++) {
+            var x = infoEnemics.objects[i].x;
+            var y = infoEnemics.objects[i].y;
+            matrixMinimap[y][x] = 2;
+        }
+
+        matrixMinimap[jugador1.pos_y][jugador1.pos_x] = 3;
+
+        mostraMinimapa();
+        mostraEnemicsAprop();
+        //mostraObjectesAprop();
     }
-
-    for (var i = 0; i < infoEnemics.objects.length; i++) {
-        var x = infoEnemics.objects[i].x;
-        var y = infoEnemics.objects[i].y;
-        matrixMinimap[y][x] = 2;
-    }
-
-    matrixMinimap[jugador1.pos_y][jugador1.pos_x] = 3;
-
-    mostraMinimapa();
-    mostraEnemicsAprop();
-    //mostraObjectesAprop();
 }
 
 // dibuixa la taula del minimapa en el fitxer html
