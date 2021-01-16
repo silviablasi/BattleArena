@@ -21,15 +21,19 @@ class jugador {
             case 1:
                 if (this.direccion == "N") {
                     this.direccion = "O"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 90 + "deg)");
                 }
                 else if (this.direccion == "S") {
                     this.direccion = "E"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 270 + "deg)");
                 }
                 else if (this.direccion == "E") {
                     this.direccion = "N";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 0 + "deg)");
                 }
                 else if (this.direccion == "O") {
                     this.direccion = "S";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 180 + "deg)");
                 }
                 console.log ("S'ha girat cap a l'esquerra");
                 break;
@@ -37,15 +41,19 @@ class jugador {
             case 2:
                 if (this.direccion == "N") {
                     this.direccion = "E"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 270 + "deg)");
                 }
                 else if (this.direccion == "S") {
                     this.direccion = "O"; 
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 90 + "deg)");
                 }
                 else if (this.direccion == "E") {
                     this.direccion = "S";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 180 + "deg)");
                 }
                 else if (this.direccion == "O") {
                     this.direccion = "N";  
+                    document.getElementById("brujula").setAttribute("style", "transform: rotate(" + 0 + "deg)");
                 }
                 console.log ("S'ha girat cap a la dreta");
                 break;
@@ -58,6 +66,27 @@ class jugador {
     }
 
     move () {
+        var status;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, true);
+        xhr.onload = function () {
+            status = xhr.status;
+            if (status == 200) {
+                player();
+                console.log ("S'ha mogut el jugador");
+            }
+            else {
+                console.error(xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.error(xhr.statusText);
+        };
+        xhr.send();
+        return status;
+    }
+
+    /*move () {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, false);
         xhr.send();
@@ -69,7 +98,7 @@ class jugador {
         player();
         console.log ("S'ha mogut el jugador");
         return status;
-    }
+    }*/
 
     attack () {
         var status;
