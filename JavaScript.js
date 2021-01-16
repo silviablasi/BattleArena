@@ -7,6 +7,8 @@ var jugadorsAprop;
 var infoEnemics;
 var matrixMinimap = new Array(40);
 var viu = false;
+var playersObjects;
+var map;
 
 // crea array del minimapa
 for (var i = 0; i < matrixMinimap.length; i++) {
@@ -173,29 +175,6 @@ function respawn () {
     return status;
 }*/
 
-var playersObjects = new Promise (function (myResolve2, myReject2) {
-    var status;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, false);
-    xhr.onload = function () {
-        status = xhr.status;
-        if (status == 200) {
-            jugadorsAprop = JSON.parse(xhr.responseText);
-            console.log ("S'ha consultat la informació dels enemics i objectes");
-            myResolve2(jugadorsAprop);
-        }
-        else {
-            console.error(xhr.statusText);
-            myReject2(alert("Error"));
-        }
-    };
-    xhr.onerror = function () {
-        console.error(xhr.statusText);
-    };
-    xhr.send();
-    return status;
-})
-
 /*function playersObjects () {
     var status;
     var xhr = new XMLHttpRequest();
@@ -231,28 +210,7 @@ var playersObjects = new Promise (function (myResolve2, myReject2) {
     return status;
 }*/
 
-var map = new Promise (function (myResolve, myReject) {
-    var status;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, false);
-    xhr.onload = function () {
-        status = xhr.status;
-        if (status == 200) {
-            infoEnemics = JSON.parse(xhr.responseText);
-            console.log ("S'ha consultat la informació");
-            myResolve(infoEnemics);
-        }
-        else {
-            console.error(xhr.statusText);
-            myReject(alert("Error"));
-        }
-    };
-    xhr.onerror = function () {
-        console.error(xhr.statusText);
-    };
-    xhr.send();
-    return status;
-})
+
     
 
 /*function map () {
@@ -357,6 +315,7 @@ function player () {
     return status;
 }*/
 
+
 document.addEventListener('keydown', pulsarTecla);
 
 function pulsarTecla (event) {
@@ -434,8 +393,54 @@ var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per 
 
 // omple el minimapa
 function ompleMinimapa() {
-    
     if(viu){
+
+        playersObjects = new Promise (function (myResolve2, myReject2) {
+            var status;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, true);
+            xhr.onload = function () {
+                status = xhr.status;
+                if (status == 200) {
+                    jugadorsAprop = JSON.parse(xhr.responseText);
+                    console.log ("S'ha consultat la informació dels enemics i objectes");
+                    myResolve2(jugadorsAprop);
+                }
+                else {
+                    console.error(xhr.statusText);
+                    myReject2(alert("Error"));
+                }
+            };
+            xhr.onerror = function () {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+            return status;
+        })
+        
+        map = new Promise (function (myResolve, myReject) {
+            var status;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, true);
+            xhr.onload = function () {
+                status = xhr.status;
+                if (status == 200) {
+                    infoEnemics = JSON.parse(xhr.responseText);
+                    console.log ("S'ha consultat la informació");
+                    myResolve(infoEnemics);
+                }
+                else {
+                    console.error(xhr.statusText);
+                    myReject(alert("Error"));
+                }
+            };
+            xhr.onerror = function () {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+            return status;
+        })
+
         buidaMapa ();
         map.then(function(value) {
             for(var i = 0; i < value.enemies.length; i++) {
@@ -481,10 +486,10 @@ function mostraMinimapa(){
 }
 
 function mostraEnemicsAprop () {
+    var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
+    //enemicsAprop += '<thead>Enemics</thead>';
+    enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
     playersObjects.then(function (value) {
-        var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
-        //enemicsAprop += '<thead>Enemics</thead>';
-        enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
         for (var i = 0; i < value.enemies.length; i++) {
             enemicsAprop += "<tr><td>" + value.enemies[i].x + "</td><td>" + value.enemies[i].y + "</td><td>" + value.enemies[i].direction + "</td><td>" + value.enemies[i].vitalpoints + "</td></tr>";
         }
