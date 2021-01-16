@@ -338,16 +338,26 @@ function pulsarTecla (event) {
     }
 }
 
+// vuida el minimapa per posar caselles blanques
+function vuidaMapa () {
+    for (var i = 0; i < 40; i++) {
+        for (var j = 0; j < 40; j++) {
+            matrixMinimap[i][j] = 0;   
+        }
+    }
+}
+
 // actualitza el minimapa cada 1 segon
 //var updateMap = setInterval(ompleMinimapa, 1000);
 
 // omple el minimapa
 function ompleMinimapa() {
+    vuidaMapa ();
     map();
     for(var i = 0; i < infoEnemics.enemies.length; i++) {
         var x = infoEnemics.enemies[i].x;
         var y = infoEnemics.enemies[i].y;
-        matrixMinimap[x][y] = 1;
+        matrixMinimap[y][x] = 1;
     }
 
     for (var i = 0; i < infoEnemics.objects.length; i++) {
@@ -356,8 +366,11 @@ function ompleMinimapa() {
         matrixMinimap[y][x] = 2;
     }
 
-    /* matrixMinimap[jugador1.pos_x][jugador1.pos_y] = 2; */
+    matrixMinimap[jugador1.pos_y][jugador1.pos_x] = 3;
+
     mostraMinimapa();
+    mostraEnemicsAprop();
+    //mostraObjectesAprop();
 }
 
 // dibuixa la taula del minimapa en el fitxer html
@@ -366,14 +379,11 @@ function mostraMinimapa(){
     for(var i=matrixMinimap.length -1; i >= 0; i--) {
         fullmap += '<tr>';
         for(var j=0; j<matrixMinimap[i].length; j++) {
-            if (matrixMinimap[i][j] == 1) {
-                fullmap += '<td class="cell-enemy-red"></td>';
-            } else {
-                if (matrixMinimap[i][j] == 2) {
-                    fullmap += '<td class="cell-object-black"></td>';
-                } else {
-                    fullmap += '<td></td>';
-                }
+            switch (matrixMinimap[i][j]) {
+                case 0: fullmap += '<td class="cell-white"></td>'; break;
+                case 1: fullmap += '<td class="cell-enemy-red"></td>'; break;
+                case 2: fullmap += '<td class="cell-object-black"></td>'; break;
+                case 3: fullmap += '<td class="cell-player1-blue"></td>'; break;
             }
         }
         fullmap += '</tr>';
@@ -382,3 +392,26 @@ function mostraMinimapa(){
     document.getElementById('minimap').innerHTML = fullmap;
 }
 
+function mostraEnemicsAprop () {
+    playersObjects();
+    var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
+    enemicsAprop += '<thead>Enemics</thead>';
+    enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
+    for (var i = 0; i < jugadorsAprop.enemies.length; i++) {
+        enemicsAprop += "<tr><td>" + jugadorsAprop.enemies[i].x + "</td><td>" + jugadorsAprop.enemies[i].y + "</td><td>" + jugadorsAprop.enemies[i].direction + "</td><td>" + jugadorsAprop.enemies[i].vitalpoints + "</td></tr>";
+    }
+    enemicsAprop += '</table>'
+    document.getElementById('tabla-enemics').innerHTML = enemicsAprop;
+}
+
+/* function mostraObjectesAprop () {
+    playersObjects();
+    var objectesAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable objectes-aprop">';
+    objectesAprop += '<thead>Enemics</thead>';
+    objectesAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
+    for (var i = 0; i < jugadorsAprop.objects.length; i++) {
+        //objectesAprop += "<tr><td>" + objectesAprop.objects[i].x + "</td><td>" + objectesAprop.objects[i].y + "</td><td>" + objectesAprop.objects[i].direction + "</td><td>" + objectesAprop.objects[i].vitalpoints + "</td></tr>";
+    }
+    objectesAprop += '</table>';
+    document.getElementById('tabla-objectes').innerHTML = objectesAprop;
+} */

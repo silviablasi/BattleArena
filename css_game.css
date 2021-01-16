@@ -27,10 +27,10 @@ body {
 }
 
 .front-element {
-  position: absolute !important;
-  top: 200px !important;
-  right: 105px !important;
-  z-index: 3 !important;
+  position: absolute;
+  top: 200px;
+  right: 105px;
+  z-index: 3;
 }
 .is-200x200 {
     width: 200px;
@@ -80,16 +80,30 @@ table {
     background-color: red;
 }
 
-.cell-player-blue {
+.cell-player1-blue {
     background-color: blue;
 }
 
 .cell-object-black {
     background-color: black;
+}
 
+.cell-white {
+    background-color: white;
 }
 
 .minimapa {
     margin-top: 2%;
     margin-left: 15%;
 }
+
+.enemics-aprop {
+    position: relative;
+    left: 60%;
+}
+
+.objectes-aprop {
+    position: relative;
+    left: 30%;
+}
+
