@@ -340,7 +340,7 @@ function pulsarTecla (event) {
 }
 
 // vuida el minimapa per posar caselles blanques
-function vuidaMapa () {
+function buidaMapa () {
     for (var i = 0; i < 40; i++) {
         for (var j = 0; j < 40; j++) {
             matrixMinimap[i][j] = 0;   
@@ -349,11 +349,11 @@ function vuidaMapa () {
 }
 
 // actualitza el minimapa cada 1 segon
-//var updateMap = setInterval(ompleMinimapa, 1000);
+var updateMap = setInterval(ompleMinimapa, 1000);
 
 // omple el minimapa
 function ompleMinimapa() {
-    vuidaMapa ();
+    buidaMapa ();
     map();
     for(var i = 0; i < infoEnemics.enemies.length; i++) {
         var x = infoEnemics.enemies[i].x;
@@ -396,7 +396,7 @@ function mostraMinimapa(){
 function mostraEnemicsAprop () {
     playersObjects();
     var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
-    enemicsAprop += '<thead>Enemics</thead>';
+    //enemicsAprop += '<thead>Enemics</thead>';
     enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
     for (var i = 0; i < jugadorsAprop.enemies.length; i++) {
         enemicsAprop += "<tr><td>" + jugadorsAprop.enemies[i].x + "</td><td>" + jugadorsAprop.enemies[i].y + "</td><td>" + jugadorsAprop.enemies[i].direction + "</td><td>" + jugadorsAprop.enemies[i].vitalpoints + "</td></tr>";

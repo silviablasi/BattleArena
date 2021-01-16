@@ -13,7 +13,7 @@
         <script src="jugador.js"></script>
     </head>
     <!-- <body onload="spawn()"> -->
-    <body onload="ompleMinimapa()">
+    <body>
         <div class="m-2">
             
             <div class="columns">
@@ -53,18 +53,33 @@
             <!-- Descripcion -->
             <div class="back">
                 <p class="title is-2 has-text-black has-background-brown">Descripción</p>
-                <p class="textInfo">Name:</p>
-                <p class="textInfoSub" id="namePlayer"></p>
-                <p class="textInfo">Position X:</p>
-                <p class="textInfoSub" id="playerPositionX"></p>
-                <p class="textInfo">Position Y:</p>
-                <p class="textInfoSub" id="playerPositionY"></p>
-                <p class="textInfo">Orientacion:</p>
-                <p class="textInfoSub" id="playerOrientation"></p>
-                <p class="textInfo">Points:</p>
-                <p class="textInfoSub" id="playerPoints"></p>
-                <div id="tabla-enemics"></div>
-                <div id="tabla-objectes"></div>
+                <div class="columns is-multiline is-centered">
+                    
+                    <div class="column is-narrow">
+                        <p class="title is-4 textInfo">Name:</p>
+                        <p class="subtitle is-6 textInfoSub" id="namePlayer"></p>
+
+                        <p class="title is-4 textInfo">Position X:</p>
+                        <p class="subtitle is-6 textInfoSub" id="playerPositionX"></p>
+
+                        <p class="title is-4 textInfo">Position Y:</p>
+                        <p class="subtitle is-6 textInfoSub" id="playerPositionY"></p>
+
+                        <p class="title is-4 textInfo">Orientacion:</p>
+                        <p class="subtitle is-6 textInfoSub" id="playerOrientation"></p>
+
+                        <p class="title is-4 textInfo">Points:</p>
+                        <p class="subtitle is-6 textInfoSub" id="playerPoints"></p>
+                    </div>
+
+                    <div class="column is-narrow">
+                        <div id="tabla-enemics"></div>
+                    </div>
+
+                    <div class="column is-narrow">
+                        <div id="tabla-objectes"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
