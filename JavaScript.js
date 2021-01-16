@@ -349,7 +349,7 @@ function vuidaMapa () {
 }
 
 // actualitza el minimapa cada 1 segon
-//var updateMap = setInterval(ompleMinimapa, 1000);
+//var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per actualizar el mapa
 
 // omple el minimapa
 function ompleMinimapa() {
