@@ -112,3 +112,18 @@ table {
   margin-top: 5%;
   margin-left: 22%;
 }
+
+.controls{
+  margin-top: 25%;
+}
+
+.controls-p{
+  font-size: large;
+  color: green;
+  margin-left: 25%;
+}
+
+.controls-img{
+  width: 75%;
+  margin-left: 15%;
+}
