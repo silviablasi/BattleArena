@@ -66,6 +66,27 @@ class jugador {
     }
 
     move () {
+        var status;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, true);
+        xhr.onload = function () {
+            status = xhr.status;
+            if (status == 200) {
+                player();
+                console.log ("S'ha mogut el jugador");
+            }
+            else {
+                console.error(xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.error(xhr.statusText);
+        };
+        xhr.send();
+        return status;
+    }
+
+    /*move () {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, false);
         xhr.send();
@@ -77,7 +98,7 @@ class jugador {
         player();
         console.log ("S'ha mogut el jugador");
         return status;
-    }
+    }*/
 
     attack () {
         var status;
