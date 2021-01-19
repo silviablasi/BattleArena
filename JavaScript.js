@@ -10,7 +10,7 @@ var viu = false;
 var playersObjects;
 var map;
 
-// crea array del minimapa
+// crea l'array del minimapa
 for (var i = 0; i < matrixMinimap.length; i++) {
     matrixMinimap[i] = new Array(40);
 }
@@ -34,6 +34,15 @@ for (var i = 0; i < matrixMinimap.length; i++) {
     return status;
 }*/
 
+/*
+ * @Descripción: Elimina el jugador indicado.
+ * @Paràmetres: - group_token: identificador único del grupo de prácticas.
+ *              - token: identificador único del jugador.
+ *              - code: código de seguridad del jugador.
+ * @Códigos de retorno: 200 Si se ha eliminado correctamente.
+ * @Contenido de retorno: Sin contenido.
+ * @Formato de llamada: http://battlearena.danielamo.info/api/remove/<group_token>/<token>/<code>
+ */
 function remove () {
     var status;
     var xhr = new XMLHttpRequest();
@@ -73,6 +82,15 @@ function remove () {
         });
 }*/
 
+/*
+ * @Descripción: Genera un nuevo jugador.
+ * @Paràmetres: - group_token: identificador único del grupo de prácticas.
+                - name: nombre del jugador.
+ * @Códigos de retorno: 200 Si se ha generado correctamente.
+ * @Contenido de retorno: JSON con el token único del jugador y el código de seguridad de borrado. 
+ *      El código de seguridad de borrado sirve para evitar que otros jugadores puedan borrar un jugador.
+ * @Formato de llamada: http://battlearena.danielamo.info/api/spawn/<group_token>/<nombre>
+ */
 function spawn () {
     var status;
     var xhr = new XMLHttpRequest();
@@ -138,6 +156,16 @@ function spawn () {
     return status;
 }*/
 
+
+
+/*
+ * @Descripción: Regenera un nuevo jugador, actualizando posición, imagen y puntos de vida.
+ * @Paràmetres: - group_token: Identificador único del grupo de prácticas.
+                - token: Identificador único del jugador.
+ * @Códigos de retorno: 200 Si se ha regenerado el jugador correctamente.
+ * @Contenido de retorno: Sin contenido.
+ * @Formato de llamada: http://battlearena.danielamo.info/api/respawn/<group_token>/<token>
+ */
 function respawn () {
     var status;
     var xhr = new XMLHttpRequest();
@@ -247,6 +275,15 @@ function respawn () {
     return status;
 }*/
 
+
+/*
+ * @Descripción: Devuelve información detallada del jugador.
+ * @Paràmetres: - group_token: identificador único del grupo de prácticas.
+ *              - token: Identificador único del jugador.
+ * @Códigos de retorno: 200 Si se han podido consultar la información del jugador.
+ * @Contenido de retorno: JSON con la información del jugador.
+ * @Formato de llamada: http://battlearena.danielamo.info/api/player/<group_token>/<token>
+ */
 function player () {
     var status;
     var rotateAngle;
@@ -319,6 +356,13 @@ function player () {
 
 document.addEventListener('keydown', pulsarTecla);
 
+/*
+ * @Descripción: 
+ * @Paràmetres: - event: identificador único del grupo de prácticas.
+ * @Códigos de retorno: 200 Si se han podido consultar la información del jugador.
+ * @Contenido de retorno: JSON con la información del jugador.
+ * @Formato de llamada: http://battlearena.danielamo.info/api/player/<group_token>/<token>
+ */
 function pulsarTecla (event) {
     var opcion;
     switch(event.keyCode){
@@ -414,7 +458,6 @@ function mostrarEnemic () {
         }
     }
 }
-
 
 // vuida el minimapa per posar caselles blanques
 function buidaMapa () {

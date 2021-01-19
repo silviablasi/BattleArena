@@ -64,7 +64,17 @@ class jugador {
         document.getElementById("playerOrientation").textContent = jugador1.direccion;
         document.getElementById("playerPoints").textContent = jugador1.puntos;
     }
-
+    
+    /*
+    * @Descripción: Mueve el jugador hacia el Norte, Sur, Este u Oeste.
+    * @Paràmetres:  - group_token: identificador único del grupo de prácticas.
+                    - token: Identificador único del jugador.
+                    - direccion: La letra coincidente con la dirección objetivo (N, S, E, O).
+    * @Códigos de retorno: - 200 Si se han podido mover al jugador.
+    *                      - 50X Si ha habido algú error en el movimiento, como intentar atravesar una pared.
+    * @Contenido de retorno: Sin contenido o mensaje de error.
+    * @Formato de llamada: http://battlearena.danielamo.info/api/move/<group_token>/<token>/<direccion>
+    */
     move () {
         var status;
         var xhr = new XMLHttpRequest();
@@ -100,6 +110,17 @@ class jugador {
         return status;
     }*/
 
+
+    /*
+    * @Descripción: Ataca al primer enemigo, en la dirección indicada.
+    * @Paràmetres:  - group_token: identificador único del grupo de prácticas.
+    *               - token: Identificador único del jugador.
+    *               - direccion: La letra coincidente con la dirección donde atacar (N, S, E, O).
+    * @Códigos de retorno: - 200 Si se ha podido realizar el ataque.
+    *                      - 50X Si ha habido algún error en el ataque, como intentar atacar si se está muerto, no hay ningún enemigo hay una pared delante.
+    * @Contenido de retorno: Los puntos de vida que se quitan en el ataque.
+    * @Formato de llamada: http://battlearena.danielamo.info/api/attack/<group_token>/<token>/<direccion>
+    */
     atacar (direccio) {
         console.log("FAIL");
         var status;
