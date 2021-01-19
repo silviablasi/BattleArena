@@ -15,6 +15,11 @@ class jugador {
         this.Objeto = jugador.object;
     }
     
+    /*
+    * @Finalitat: Gira la bruixola en funcio de la direccio en que el nostre jugador esta mirant
+    * @Paràmetres: no
+    * @Retorn: no
+    */
     girar (opcion) {
         switch (opcion) {
             //girar hacia la izquierda
@@ -166,6 +171,11 @@ class jugador {
         return status;
     }*/
 
+    /*
+    * @Finalitat: Mostra la imatge de fons del terra o la pared si estem al limit del mapa
+    * @Paràmetres: no
+    * @Retorn: no
+    */
     foto_Nav () {
         if ((this.pos_x == 39 && this.direccion == "E") || (this.pos_x == 0 && this.direccion == "O") || (this.pos_y == 39 && this.direccion == "N") || (this.pos_y == 0 && this.direccion == "S")) {
             var foto = document.getElementById("img-nav");
