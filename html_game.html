@@ -19,7 +19,7 @@
             <div class="columns">
 
                 <!-- Objects -->
-                <div class="column">
+                <div class="column is-one-quarter">
                     <div class="back">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Objects</p>
                         <div id="minimap">MiniMapa</div>
@@ -30,11 +30,12 @@
                 </div>
                 
                 <!-- Game screen -->
-                <div class="column is-half">
+                <div class="column is-half" style="margin-bottom: 5%;">
                     <p class="title is-2 has-text-black has-text-centered has-background-brown">Game Screen</p>
                     <figure class="image is-5by4">
                         <img src="img/Screen_Prov.webp" alt="Controls">
                         <img id="img-nav" alt="">
+                        <img id = "enemic" alt="">
                     </figure>
                 </div>
 
@@ -42,50 +43,54 @@
                 <div class="column">
                     <div class="back">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Controls</p>
-                        <button class="button is-resized is-primary is-outlined " onclick="respawn();">Respawn</button>
-                        <button class="button is-resized is-primary is-outlined" onclick="remove();">Delete Player</button>
-                        <button class="button is-resized is-primary is-outlined" onclick="spawn();">Start Game</button>
                         <!-- <button class="button" onclick="attack();">Kill Player</button> -->
                         <div class="controls">
                             <img class="controls-img" src="img/wasd.png" alt="wasd">
                             <p class ="controls-p">Attack: WASD</p>
                             <p class ="controls-p">Mouve: Arrows</p>
+
+                        <div>
+                            <img>
                         </div>
+                        <div style="margin-top: 5%;">
+                            <button class="button is-resized is-primary is-outlined " onclick="respawn();">Respawn</button>
+                            <button class="button is-resized is-primary is-outlined" onclick="remove();">Delete Player</button>
+                            <button class="button is-resized is-primary is-outlined" onclick="spawn();">Start Game</button>
+
+                        </div>
+
+                            <!-- Descripcion -->
+                            <p class="title is-2 has-text-black has-background-brown" style=" margin-top: 40%;">Descripción</p>
+                                <div class="column is-narrow" style="padding-left: 15%;">
+                                    <p class="title is-4 textInfo">Name:</p>
+                                    <p class="subtitle is-6 textInfoSub" id="namePlayer"></p>
+
+                                    <p class="title is-4 textInfo">Position X:</p>
+                                    <p class="subtitle is-6 textInfoSub" id="playerPositionX"></p>
+
+                                    <p class="title is-4 textInfo">Position Y:</p>
+                                    <p class="subtitle is-6 textInfoSub" id="playerPositionY"></p>
+
+                                    <p class="title is-4 textInfo">Orientacion:</p>
+                                    <p class="subtitle is-6 textInfoSub" id="playerOrientation"></p>
+
+                                    <p class="title is-4 textInfo">Points:</p>
+                                    <p class="subtitle is-6 textInfoSub" id="playerPoints"></p>
+                                </div>
+
+                                <div class="column" style="margin-right: 50%;;">
+                                    <p class="title "></p>
+                                    <div id="tabla-enemics"></div>
+                                </div>
+
+                                <div class="column">
+                                    <div id="tabla-objectes"></div>
+                                </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Descripcion -->
-            <div class="back">
-                <p class="title is-2 has-text-black has-background-brown">Descripción</p>
-                <div class="columns is-multiline is-centered">
-                    
-                    <div class="column is-narrow">
-                        <p class="title is-4 textInfo">Name:</p>
-                        <p class="subtitle is-6 textInfoSub" id="namePlayer"></p>
-
-                        <p class="title is-4 textInfo">Position X:</p>
-                        <p class="subtitle is-6 textInfoSub" id="playerPositionX"></p>
-
-                        <p class="title is-4 textInfo">Position Y:</p>
-                        <p class="subtitle is-6 textInfoSub" id="playerPositionY"></p>
-
-                        <p class="title is-4 textInfo">Orientacion:</p>
-                        <p class="subtitle is-6 textInfoSub" id="playerOrientation"></p>
-
-                        <p class="title is-4 textInfo">Points:</p>
-                        <p class="subtitle is-6 textInfoSub" id="playerPoints"></p>
-                    </div>
-
-                    <div class="column is-narrow">
-                        <div id="tabla-enemics"></div>
-                    </div>
-
-                    <div class="column is-narrow">
-                        <div id="tabla-objectes"></div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </body>
 </html>

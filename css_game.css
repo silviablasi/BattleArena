@@ -10,6 +10,8 @@
 body {
   background-image: url(img/battlearena_2.jpg);
   background-size: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .has-background-brown {
@@ -43,7 +45,7 @@ body {
 }
 
 .back{
-  background: url("img/Objects_Provisional.png");
+  background: url("img/fondo.jpg");
   background-size: cover;
   height: 100%;
 }
@@ -114,7 +116,7 @@ table {
 }
 
 .controls{
-  margin-top: 25%;
+  margin-top: 5%;
 }
 
 .controls-p{
