@@ -22,7 +22,7 @@
                 <div class="column is-one-quarter">
                     <div class="back">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Objects</p>
-                        <div id="minimap">MiniMapa</div>
+                        <div id="minimap"></div>
                         <figure class="image is-inline-block">
                             <img id="brujula" alt="">
                         </figure>
@@ -37,60 +37,64 @@
                         <img id="img-nav" alt="">
                         <img id = "enemic" alt="">
                     </figure>
+
+                    <!-- Descripcion -->
+                    <div class="back" style="height: 40%; margin-top: 5%;">
+                        <p class="title is-2 has-text-black has-background-brown has-text-centered">Descripción</p>
+                        <div class="columns">
+                            <div class="column is-half">
+                                <p class="title is-1 has-text-black has-text-centered has-background-brown">Player</p>
+                                <p class="title is-4 textInfo" style="margin-left: 5%;">Name:</p>
+                                <p class="subtitle is-6 textInfoSub" id="namePlayer" style="margin-left: 5%;"></p>
+
+                                <p class="title is-4 textInfo" style="margin-left: 5%;">Position X:</p>
+                                <p class="subtitle is-6 textInfoSub" id="playerPositionX" style="margin-left: 5%;"></p>
+
+                                <p class="title is-4 textInfo" style="margin-left: 5%;">Position Y:</p>
+                                <p class="subtitle is-6 textInfoSub" id="playerPositionY" style="margin-left: 5%;"></p>
+
+                                <p class="title is-4 textInfo" style="margin-left: 5%;">Orientacion:</p>
+                                <p class="subtitle is-6 textInfoSub" id="playerOrientation" style="margin-left: 5%;"></p>
+
+                                <p class="title is-4 textInfo" style="margin-left: 5%;">Points:</p>
+                                <p class="subtitle is-6 textInfoSub" id="playerPoints" style="margin-left: 5%;"></p>
+                            </div>
+
+                            <div class="column is-half">
+                                <p class="title is-1 has-text-black has-text-centered has-background-brown">Enemies</p>
+                                <div id="tabla-enemics" style="margin-right: 50%;"></div>
+                            </div>
+
+                            <div class="column">
+                                <div id="tabla-objectes"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Controls -->
                 <div class="column">
-                    <div class="back">
+                    <!-- <button class="button" onclick="attack();">Kill Player</button> -->
+                    <div class="back" style="height: 60%">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Controls</p>
-                        <!-- <button class="button" onclick="attack();">Kill Player</button> -->
                         <div class="controls">
                             <img class="controls-img" src="img/wasd.png" alt="wasd">
-                            <p class ="controls-p">Attack: WASD</p>
-                            <p class ="controls-p">Mouve: Arrows</p>
-
+                            <p class ="title is-4 textInfo"  style="margin-left: 2%;">Attack: WASD</p>
+                            <p class ="title is-4 textInfo"  style="margin-left: 2%;">Move: Arrows</p>
+                            <p class = "title is-4 textInfo" style="margin-left: 2%;">Jump (move x2): Left Shift</p>
+                        </div>
                         <div>
                             <img>
                         </div>
                         <div style="margin-top: 5%;">
-                            <button class="button is-resized is-primary is-outlined " onclick="respawn();">Respawn</button>
-                            <button class="button is-resized is-primary is-outlined" onclick="remove();">Delete Player</button>
-                            <button class="button is-resized is-primary is-outlined" onclick="spawn();">Start Game</button>
+                            <button class="button is-resized is-dark" onclick="respawn();">Respawn</button>
+                            <button class="button is-resized is-dark" onclick="remove();">Delete Player</button>
+                            <button class="button is-resized is-dark" onclick="spawn();">Start Game</button>
 
                         </div>
-
-                            <!-- Descripcion -->
-                            <p class="title is-2 has-text-black has-background-brown" style=" margin-top: 40%;">Descripción</p>
-                                <div class="column is-narrow" style="padding-left: 15%;">
-                                    <p class="title is-4 textInfo">Name:</p>
-                                    <p class="subtitle is-6 textInfoSub" id="namePlayer"></p>
-
-                                    <p class="title is-4 textInfo">Position X:</p>
-                                    <p class="subtitle is-6 textInfoSub" id="playerPositionX"></p>
-
-                                    <p class="title is-4 textInfo">Position Y:</p>
-                                    <p class="subtitle is-6 textInfoSub" id="playerPositionY"></p>
-
-                                    <p class="title is-4 textInfo">Orientacion:</p>
-                                    <p class="subtitle is-6 textInfoSub" id="playerOrientation"></p>
-
-                                    <p class="title is-4 textInfo">Points:</p>
-                                    <p class="subtitle is-6 textInfoSub" id="playerPoints"></p>
-                                </div>
-
-                                <div class="column" style="margin-right: 50%;;">
-                                    <p class="title "></p>
-                                    <div id="tabla-enemics"></div>
-                                </div>
-
-                                <div class="column">
-                                    <div id="tabla-objectes"></div>
-                                </div>
                     </div>
                 </div>
             </div>
-
-            
         </div>
     </body>
 </html>
