@@ -77,12 +77,13 @@ class jugador {
     */
     move () {
         var status;
+        var primerCop = false;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/move/" + group_token + "/" + this.identificador + "/" + this.direccion, true);
         xhr.onload = function () {
             status = xhr.status;
             if (status == 200) {
-                player();
+                player(primerCop);
                 console.log ("S'ha mogut el jugador");
             }
             else {
@@ -122,7 +123,6 @@ class jugador {
     * @Formato de llamada: http://battlearena.danielamo.info/api/attack/<group_token>/<token>/<direccion>
     */
     atacar (direccio) {
-        console.log("FAIL");
         var status;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://battlearena.danielamo.info/api/attack/" + group_token + "/" + this.identificador + "/" + direccio, true);
@@ -132,6 +132,8 @@ class jugador {
                 var puntos_menos = JSON.parse(xhr.responseText);
                 this.puntos = this.puntos - puntos_menos;
                 console.log ("S'ha lluitat contra algun jugador");
+                var primer = false
+                player(primer);
             }
             else {
                 if (status >= 500 && status < 510) {

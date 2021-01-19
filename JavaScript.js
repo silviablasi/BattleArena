@@ -93,6 +93,7 @@ function remove () {
  */
 function spawn () {
     var status;
+    var primerCop = true;
     var xhr = new XMLHttpRequest();
     var nombre = prompt("Escribe el nombre de tu personaje: ");
     xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre, true);
@@ -102,7 +103,7 @@ function spawn () {
             aux = JSON.parse(this.responseText);
             token = aux.token;
             code = aux.code;
-            player();
+            player(primerCop);
             console.log ("S'ha creat el jugador");
             viu = true;
         }
@@ -168,13 +169,14 @@ function spawn () {
  */
 function respawn () {
     var status;
+    var primerCop = true;
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://battlearena.danielamo.info/api/respawn/" + group_token + "/" + token, true);
     xhr.onload = function () {
         status = xhr.status;
         if (status == 200) {
             console.log ("S'ha actualitzat el jugador");
-            player();
+            player(primerCop);
             viu = true;
         }
         else {
@@ -284,7 +286,7 @@ function respawn () {
  * @Contenido de retorno: JSON con la información del jugador.
  * @Formato de llamada: http://battlearena.danielamo.info/api/player/<group_token>/<token>
  */
-function player () {
+function player (primer) {
     var status;
     var rotateAngle;
     var xhr = new XMLHttpRequest();
@@ -295,16 +297,12 @@ function player () {
             jugadorAux = JSON.parse(xhr.responseText);
             console.log ("S'ha rebut la informació del jugador");
             jugador1 = new jugador (token, code, jugadorAux);
-            var jugador_local = JSON.stringify(jugador1);
-            localStorage.setItem("spawn_" + localStorage.length, jugador_local);
             jugador1.foto_Nav();
-            mostrarEnemic();
             document.getElementById("namePlayer").textContent = jugador1.name;
             document.getElementById("playerPositionX").textContent = jugador1.pos_x;
             document.getElementById("playerPositionY").textContent = jugador1.pos_y;
             document.getElementById("playerOrientation").textContent = jugador1.direccion;
             document.getElementById("playerPoints").textContent = jugador1.puntos;
-            document.getElementById("brujula").setAttribute("src", "img/brujula.png");
             switch (jugador1.direccion) {
                 case "N":
                     rotateAngle = 0;
@@ -319,7 +317,13 @@ function player () {
                     rotateAngle = 270;
                     break;
             }
-            document.getElementById("brujula").setAttribute("style", "transform: rotate(" + rotateAngle + "deg)")
+            document.getElementById("brujula").setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+            if (primer) {
+                document.getElementById("brujula").setAttribute("src", "img/brujula.png");
+                var jugador_local = JSON.stringify(jugador1);
+                localStorage.setItem("spawn_" + localStorage.length, jugador_local);
+            }
+            primer = false;
         }
         else {
             console.error(xhr.statusText);
@@ -435,7 +439,6 @@ function pulsarTecla (event) {
 function mostrarEnemic () {
     var trobat = false;
     for (var i = 0; i < jugadorsAprop.enemies.length && !trobat; i++) {
-        console.log (jugadorsAprop.enemies[i].x +"=="+ jugador1.pos_x +"&&"+ jugadorsAprop.enemies[i].y +">"+ jugador1.pos_y + "&&"+ jugador1.direccion +"== N"+ i);
         if ((jugadorsAprop.enemies[i].x == jugador1.pos_x) && (jugadorsAprop.enemies[i].y > jugador1.pos_y) && (jugador1.direccion == "N")) {
             document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
             console.log("1");
@@ -520,7 +523,7 @@ function ompleMinimapa() {
             xhr.send();
             return status;
         })
-
+        
         buidaMapa ();
         map.then(function(value) {
             for(var i = 0; i < value.enemies.length; i++) {
@@ -539,6 +542,7 @@ function ompleMinimapa() {
 
             mostraMinimapa();
             mostraEnemicsAprop();
+            mostrarEnemic();
             //mostraObjectesAprop();
         },
         function(error) {console.log(error)}
