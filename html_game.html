@@ -12,29 +12,32 @@
         <script src="JavaScript.js"></script>
         <script src="jugador.js"></script>
     </head>
-    <!-- <body onload="spawn()"> -->
     <body>
         <div class="m-2">
             
             <div class="columns">
-
-                <!-- Objects -->
+                <!-- Minimapa -->
                 <div class="column is-one-quarter">
                     <div class="back">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Objects</p>
+                        <!-- Minimap (JS) -->
                         <div id="minimap"></div>
                         <figure class="image is-inline-block">
+                            <!-- Brujula movil (JS) -->
                             <img id="brujula" alt="">
                         </figure>
                     </div>
                 </div>
                 
-                <!-- Game screen -->
                 <div class="column is-half" style="margin-bottom: 5%;">
+                    <!-- Game screen -->
                     <p class="title is-2 has-text-black has-text-centered has-background-brown">Game Screen</p>
                     <figure class="image is-5by4">
+                        <!-- Pantalla de espera -->
                         <img src="img/Screen_Prov.webp" alt="Controls">
+                        <!-- Pantalla de partida (JS) -->>
                         <img id="img-nav" alt="">
+                        <!-- Enemigos delante (JS) -->>
                         <img id = "enemic" alt="">
                     </figure>
 
@@ -42,6 +45,7 @@
                     <div class="back" style="height: 40%; margin-top: 5%;">
                         <p class="title is-2 has-text-black has-background-brown has-text-centered">Descripción</p>
                         <div class="columns">
+                            <!-- Acceso a info jugador (JS) -->
                             <div class="column is-half">
                                 <p class="title is-1 has-text-black has-text-centered has-background-brown">Player</p>
                                 <p class="title is-4 textInfo" style="margin-left: 5%;">Name:</p>
@@ -60,13 +64,10 @@
                                 <p class="subtitle is-6 textInfoSub" id="playerPoints" style="margin-left: 5%;"></p>
                             </div>
 
+                            <!-- Tabla de informacion de los enemigos cercanos (JS) -->
                             <div class="column is-half">
                                 <p class="title is-1 has-text-black has-text-centered has-background-brown">Enemies</p>
                                 <div id="tabla-enemics" style="margin-right: 50%;"></div>
-                            </div>
-
-                            <div class="column">
-                                <div id="tabla-objectes"></div>
                             </div>
                         </div>
                     </div>
@@ -74,23 +75,21 @@
 
                 <!-- Controls -->
                 <div class="column">
-                    <!-- <button class="button" onclick="attack();">Kill Player</button> -->
                     <div class="back" style="height: 60%">
                         <p class="title is-2 has-text-black has-text-centered has-background-brown">Controls</p>
+                        <!-- Descripcion de los controles -->
                         <div class="controls">
                             <img class="controls-img" src="img/wasd.png" alt="wasd">
                             <p class ="title is-4 textInfo"  style="margin-left: 2%;">Attack: WASD</p>
                             <p class ="title is-4 textInfo"  style="margin-left: 2%;">Move: Arrows</p>
                             <p class = "title is-4 textInfo" style="margin-left: 2%;">Jump (move x2): Left Shift</p>
                         </div>
-                        <div>
-                            <img>
-                        </div>
+                        
+                        <!-- Botones de la partida (JS) -->>
                         <div style="margin-top: 5%;">
                             <button class="button is-resized is-dark" onclick="respawn();">Respawn</button>
                             <button class="button is-resized is-dark" onclick="remove();">Delete Player</button>
                             <button class="button is-resized is-dark" onclick="spawn();">Start Game</button>
-
                         </div>
                     </div>
                 </div>
