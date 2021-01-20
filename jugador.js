@@ -1,7 +1,7 @@
 var aux4;
 
 class jugador {
-    //constructor del jugador con todos sus atributos
+    /* constructor del jugador con todos sus atributos */
     constructor (token, code, jugador) {
         this.identificador = token;
         this.code = code;
@@ -24,7 +24,7 @@ class jugador {
     girar (opcion) {
         switch (opcion) {
 
-            //girar hacia la izquierda (movemos la dirección de la persona una posición y giramos la brujula)
+            /* girar hacia la izquierda (movemos la dirección de la persona una posición y giramos la brujula) */
             case 1:
                 if (this.direccion == "N") {
                     this.direccion = "O"; 
@@ -45,7 +45,7 @@ class jugador {
                 console.log ("S'ha girat cap a l'esquerra");
                 break;
 
-            //girar hacia la derecha (movemos la dirección de la persona una posición y giramos la brujula)
+            /* girar hacia la derecha (movemos la dirección de la persona una posición y giramos la brujula) */
             case 2:
                 if (this.direccion == "N") {
                     this.direccion = "E"; 
@@ -67,7 +67,7 @@ class jugador {
                 break;
         }
 
-        //mostramos la información actualizada
+        /* mostramos la información actualizada */
         document.getElementById("namePlayer").textContent = jugador1.name;
         document.getElementById("playerPositionX").textContent = jugador1.pos_x;
         document.getElementById("playerPositionY").textContent = jugador1.pos_y;
@@ -155,13 +155,13 @@ class jugador {
     */
     foto_Nav () {
 
-        //mostrar la imatgen de la pared en el visor en el caso de que se encuentre en los boldes del tablero
+        /* mostrar la imatgen de la pared en el visor en el caso de que se encuentre en los boldes del tablero */
         if ((this.pos_x == 39 && this.direccion == "E") || (this.pos_x == 0 && this.direccion == "O") || (this.pos_y == 39 && this.direccion == "N") || (this.pos_y == 0 && this.direccion == "S")) {
             var foto = document.getElementById("img-nav");
             foto.setAttribute("src", "img/pared.jpg");
         }
 
-        //mostrar el suelo en el visor en el caso de que se encuentre dentro del tablero
+        /* mostrar el suelo en el visor en el caso de que se encuentre dentro del tablero */
         else {
             var foto2 = document.getElementById("img-nav");
             foto2.setAttribute("src", "img/suelo.jpg");
