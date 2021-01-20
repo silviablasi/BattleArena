@@ -9,6 +9,7 @@ var matrixMinimap = new Array(40);
 var viu = false;
 var playersObjects;
 var map;
+var updateMap;
 
 // crea l'array del minimapa
 for (var i = 0; i < matrixMinimap.length; i++) {
@@ -34,6 +35,7 @@ function remove () {
         if (status == 200) {
             console.log ("S'ha esborrat el jugador");
             viu = false;
+            clearInterval(updateMap);
         }
         else {
             console.error(xhr.statusText);
@@ -71,6 +73,8 @@ function spawn () {
             player(primerCop);
             console.log ("S'ha creat el jugador");
             viu = true;
+            // actualitza el minimapa cada 1 segon
+            updateMap = setInterval(ompleMinimapa, 1000); 
         }
         else {
             console.error(xhr.statusText);
@@ -306,15 +310,12 @@ function mostrarEnemic () {
     }
 }
 
-<<<<<<< HEAD
-//buida el minimapa per posar caselles blanques
-=======
+
 /*
  * @Finalitat: Buida el minimapa per posar caselles blanques
  * @Paràmetres: no
  * @Retorn: no
  */
->>>>>>> edac5120289b9a6be6656868d4d2d577c2d913a8
 function buidaMapa () {
     for (var i = 0; i < 40; i++) {
         for (var j = 0; j < 40; j++) {
@@ -322,9 +323,6 @@ function buidaMapa () {
         }
     }
 }
-
-// actualitza el minimapa cada 1 segon
-var updateMap = setInterval(ompleMinimapa, 1000); 
 
 /*
  * @Finalitat: Omple i actualitza el minimapa
