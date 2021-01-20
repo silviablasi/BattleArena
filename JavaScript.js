@@ -258,6 +258,11 @@ function pulsarTecla (event) {
     }
 }
 
+/*
+ * @Finalitat: Mostra la imatge del enemic a on nosaltres tinguem la direccio
+ * @Paràmetres: no
+ * @Retorn: no
+ */
 function mostrarEnemic () {
     var trobat = false;
     for (var i = 0; i < jugadorsAprop.enemies.length && !trobat; i++) {
@@ -301,7 +306,15 @@ function mostrarEnemic () {
     }
 }
 
+<<<<<<< HEAD
 //buida el minimapa per posar caselles blanques
+=======
+/*
+ * @Finalitat: Buida el minimapa per posar caselles blanques
+ * @Paràmetres: no
+ * @Retorn: no
+ */
+>>>>>>> edac5120289b9a6be6656868d4d2d577c2d913a8
 function buidaMapa () {
     for (var i = 0; i < 40; i++) {
         for (var j = 0; j < 40; j++) {
@@ -313,7 +326,11 @@ function buidaMapa () {
 // actualitza el minimapa cada 1 segon
 var updateMap = setInterval(ompleMinimapa, 1000); 
 
-// omple el minimapa
+/*
+ * @Finalitat: Omple i actualitza el minimapa
+ * @Paràmetres: no
+ * @Retorn: no
+ */
 function ompleMinimapa() {
     if(viu){
 
@@ -391,7 +408,11 @@ function ompleMinimapa() {
     }
 }
 
-// dibuixa la taula del minimapa en el fitxer html
+/*
+ * @Finalitat: Dibuixa la taula del minimapa en el fitxer html
+ * @Paràmetres: no
+ * @Retorn: no
+ */
 function mostraMinimapa(){
     var fullmap = '<table class="minimapa">';
     for(var i=matrixMinimap.length -1; i >= 0; i--) {
@@ -410,6 +431,11 @@ function mostraMinimapa(){
     document.getElementById('minimap').innerHTML = fullmap;
 }
 
+/*
+ * @Finalitat: Mostra una taula amb els enmics i les seves característiques al voltant del jugador.
+ * @Paràmetres: no
+ * @Retorn: no
+ */
 function mostraEnemicsAprop () {
     var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
     enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';

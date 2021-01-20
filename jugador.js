@@ -16,6 +16,11 @@ class jugador {
         this.Objeto = jugador.object;
     }
     
+    /*
+    * @Finalitat: Gira la bruixola en funcio de la direccio en que el nostre jugador esta mirant
+    * @Paràmetres: no
+    * @Retorn: no
+    */
     girar (opcion) {
         switch (opcion) {
 
@@ -143,6 +148,11 @@ class jugador {
     }
 
 
+    /*
+    * @Finalitat: Mostra la imatge de fons del terra o la pared si estem al limit del mapa
+    * @Paràmetres: no
+    * @Retorn: no
+    */
     foto_Nav () {
 
         //mostrar la imatgen de la pared en el visor en el caso de que se encuentre en los boldes del tablero

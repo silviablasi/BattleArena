@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .has-bg-img {
   background: url("img/battlearena_background.jpg");
   background-position: center center;
@@ -100,32 +101,149 @@ table {
 }
 
 .enemics-aprop {
+=======
+/*START GAME*/
+  /*Setting de imagen de la pagina*/
+  .has-bg-img {
+    background: url("img/battlearena_background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #999;
+  }
+
+  /*Tamaño del titulo de la pagina*/
+  .container {
+>>>>>>> edac5120289b9a6be6656868d4d2d577c2d913a8
     position: relative;
-    left: 60%;
-}
+    width: 128px;
+  }
 
-.objectes-aprop {
-    position: relative;
-    left: 30%;
-}
+/*GAME*/
+    /*Elementos base modificados*/
 
-#brujula {
-  width: 60%;
-  margin-top: 5%;
-  margin-left: 22%;
-}
+    /*Fondo y tamaño del fondo*/
+    body {
+      background-image: url(img/battlearena_2.jpg);
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+    }
 
-.controls{
-  margin-top: 5%;
-}
+    /*Color del fondo de la tabla de enemigos cercanos*/
+    table {
+      background-color: white;
+    }
 
-.controls-p{
-  font-size: large;
-  color: black;
-  margin-left: 25%;
-}
+    
+  /*Elementos Nuevos*/
+  /*Fondo para definir el texto*/
+  .has-background-brown {
+    background-color: #413329;
+  }
 
-.controls-img{
-  width: 75%;
-  margin-left: 15%;
-}
+  /*Tamaño de los botones*/
+  .is-resized {
+      width: 200px;
+      height: 30px;
+  }
+
+  /*Fondo para cada apartado de infrmación*/
+  .back{
+    background: url("img/fondo.jpg");
+    background-size: cover;
+    height: 100%;
+  }
+
+  /*Color de los titulos informativos*/
+  .textInfo{
+    color:aliceblue;
+  }
+
+  /*Color y tamaño de los textos informativos*/
+  .textInfoSub{
+    color:aliceblue;
+    margin-left: 8%;
+  }
+
+  /*Ubicacion y tamaño de los botones*/
+  .button{
+    margin-left: 20%;
+    margin-bottom: 3%;
+    width: 75%;
+  }
+
+  /*Settings de la tabla de enemigos*/
+  th,
+  td,
+  tr {
+    border: 1px;
+    border-style: solid;
+    text-align: center;
+    height: 7px;
+    width: 7px;
+  }
+
+  /*Cuadricula enemigo minimapa*/
+  .cell-enemy-red {
+      background-color: red;
+  }
+
+  /*Cuadricula jugador minimapa*/
+  .cell-player1-blue {
+      background-color: blue;
+  }
+
+  /*Cuadricula objeto minimapa*/
+  .cell-object-black {
+      background-color: black;
+  }
+
+  /*Cuadricula espacio vacio minimapa*/
+  .cell-white {
+      background-color: white;
+  }
+
+  /*Ubicación minimapa*/
+  .minimapa {
+      margin-top: 2%;
+      margin-left: 15%;
+  }
+
+  /*Ubicacion tabla enemigo*/
+  .enemics-aprop {
+      position: relative;
+      left: 60%;
+  }
+
+  /*Ubicacion tabla objetos*/
+  .objectes-aprop {
+      position: relative;
+      left: 30%;
+  }
+
+  /*Ubicacion y tamaño brujula*/
+  #brujula {
+    width: 60%;
+    margin-top: 5%;
+    margin-left: 22%;
+  }
+
+  /*Ubicacion controles*/
+  .controls{
+    margin-top: 5%;
+  }
+
+  /*Ubicacion, color y tamaño texto controles*/
+  .controls-p{
+    font-size: large;
+    color: black;
+    margin-left: 25%;
+  }
+
+  /*Tamaño y ubicacion de imagen de controles*/
+  .controls-img{
+    width: 75%;
+    margin-left: 15%;
+  }
