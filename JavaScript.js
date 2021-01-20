@@ -15,24 +15,6 @@ for (var i = 0; i < matrixMinimap.length; i++) {
     matrixMinimap[i] = new Array(40);
 }
 
-/*function remove () {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/remove/" + group_token + "/" + token + "/" + code, false);
-    xhr.send();
-    var status =  xhr.status;
-    if (status == 200) {
-        console.log ("S'ha esborrat el jugador");
-    }
-    if (confirm("Quieres crear otro jugador?")) {
-        // si
-        console.log("Nuevo jugador creado");
-        spawn();
-    } else {
-        // no
-        console.log("Salir del juego");
-    }
-    return status;
-}*/
 
 /*
  * @Descripción: Elimina el jugador indicado.
@@ -64,23 +46,6 @@ function remove () {
     return status;
 }
 
-/*function spawn () {
-    var nombre = prompt("Escribe el nombre de tu personaje: ");
-    fetch("http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre)
-        .then(response => {
-            if (response.status != 200) {
-                console.log ("No s'ha creat el jugador");
-                return;
-            }
-            response.json()})
-        .then(data => {
-            token = data.token;
-            code = data.code;}
-        )
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}*/
 
 /*
  * @Descripción: Genera un nuevo jugador.
@@ -118,46 +83,6 @@ function spawn () {
     return status;
 }
 
-/*function spawn () {
-    function reqListener () {
-        var aux = JSON.parse(this.responseText);
-        token = aux.token;
-        code = aux.code;
-    }
-    var status;
-    var xhr = new XMLHttpRequest();
-    var nombre = prompt("Escribe el nombre de tu personaje: ");
-    xhr.addEventListener("load", reqListener);
-    xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre, true);
-    xhr.send();
-    status = xhr.status;
-    if (status == 200) {
-        console.log ("S'ha creat el jugador");
-        player();
-    }
-    else {
-        console.log(status);
-    }
-    return status;
-}*/
-
-/*function spawn () {
-    var xhr = new XMLHttpRequest();
-    var nombre = prompt("Escribe el nombre de tu personaje: ");
-    xhr.open("GET", "http://battlearena.danielamo.info/api/spawn/" + group_token + "/" + nombre, false);
-    xhr.send();
-    var aux = JSON.parse(xhr.responseText);
-    token = aux.token;
-    code = aux.code;
-    var status =  xhr.status;
-    if (status == 200) {
-        console.log ("S'ha creat el jugador");
-        player();
-    }
-    return status;
-}*/
-
-
 
 /*
  * @Descripción: Regenera un nuevo jugador, actualizando posición, imagen y puntos de vida.
@@ -190,93 +115,6 @@ function respawn () {
     return status;
 }
 
-/*function respawn () {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/respawn/" + group_token + "/" + token, false);
-    xhr.send();
-    var status =  xhr.status;
-    if (status == 200) {
-        var num = localStorage.length - 1;
-        var jugador1_re = localStorage.getItem('spawn_' + num);
-        var obj = JSON.parse(jugador1_re);
-        jugador1.changes_Respawn(obj);
-        console.log ("S'ha actualitzat el jugador");
-    }
-    return status;
-}*/
-
-/*function playersObjects () {
-    var status;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, true);
-    xhr.onload = function () {
-        status = xhr.status;
-        if (status == 200) {
-            jugadorsAprop = JSON.parse(xhr.responseText);
-            console.log(jugadorsAprop);
-            console.log ("S'ha consultat la informació dels enemics i objectes");
-        }
-        else {
-            console.error(xhr.statusText);
-        }
-    };
-    xhr.onerror = function () {
-        console.error(xhr.statusText);
-    };
-    xhr.send();
-    return status;
-}*/
-
-/*function playersObjects () {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/playersobjects/" + group_token + "/" + token, false);
-    xhr.send();
-    jugadorsAprop = JSON.parse(xhr.responseText);
-    console.log(jugadorsAprop);
-    var status =  xhr.status;
-    if (status == 200) {
-        console.log ("S'ha consultat la informació dels enemics i objectes");
-    }
-    return status;
-}*/
-
-
-    
-
-/*function map () {
-    var status;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, true);
-    xhr.onload = function () {
-        status = xhr.status;
-        if (status == 200) {
-            infoEnemics = JSON.parse(xhr.responseText);
-            console.log ("S'ha consultat la informació");
-        }
-        else {
-            console.error(xhr.statusText);
-        }
-    };
-    xhr.onerror = function () {
-        console.error(xhr.statusText);
-    };
-    xhr.send();
-    return status;
-}*/
-
-/*function map () {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/map/" + group_token + "/" + token, false);
-    xhr.send();
-    infoEnemics = JSON.parse(xhr.responseText);
-    console.log(infoEnemics);
-    var status =  xhr.status;
-    if (status == 200) {
-        console.log ("S'ha consultat la informació");
-    }
-    return status;
-}*/
-
 
 /*
  * @Descripción: Devuelve información detallada del jugador.
@@ -296,8 +134,12 @@ function player (primer) {
         if (status == 200) {
             jugadorAux = JSON.parse(xhr.responseText);
             console.log ("S'ha rebut la informació del jugador");
+
+            //creem un nou jugador
             jugador1 = new jugador (token, code, jugadorAux);
             jugador1.foto_Nav();
+
+            //mostrem la informació del jugador per pantalla
             document.getElementById("namePlayer").textContent = jugador1.name;
             document.getElementById("playerPositionX").textContent = jugador1.pos_x;
             document.getElementById("playerPositionY").textContent = jugador1.pos_y;
@@ -318,6 +160,8 @@ function player (primer) {
                     break;
             }
             document.getElementById("brujula").setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+
+            //si és el primer cop que entra ens guardem la informació del jugador al localStorage
             if (primer) {
                 document.getElementById("brujula").setAttribute("src", "img/brujula.png");
                 var jugador_local = JSON.stringify(jugador1);
@@ -335,27 +179,6 @@ function player (primer) {
     xhr.send();
     return status;
 }
-
-/*function player () {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://battlearena.danielamo.info/api/player/" + group_token + "/" + token, false);
-    xhr.send();
-    jugadorAux = JSON.parse(xhr.responseText);
-    var status =  xhr.status;
-    if (status == 200) {
-        console.log ("S'ha rebut la informació del jugador");
-        jugador1 = new jugador (token, code, jugadorAux);
-        var jugador_local = JSON.stringify(jugador1);
-        localStorage.setItem("spawn_" + localStorage.length, jugador_local);
-        jugador1.foto_Nav();
-        document.getElementById("namePlayer").textContent = jugador1.name;
-        document.getElementById("playerPositionX").textContent = jugador1.pos_x;
-        document.getElementById("playerPositionY").textContent = jugador1.pos_y;
-        document.getElementById("playerOrientation").textContent = jugador1.direccion;
-        document.getElementById("playerPoints").textContent = jugador1.puntos;
-    }
-    return status;
-}*/
 
 
 document.addEventListener('keydown', pulsarTecla);
@@ -378,7 +201,6 @@ function pulsarTecla (event) {
             mostrarEnemic(); 
             break;
         case 38: // Avanzar con la flecha hacia arriba
-            document.getElementById("enemic").setAttribute("src", "");
             jugador1.move();   
             mostrarEnemic();
             break;
@@ -439,30 +261,47 @@ function pulsarTecla (event) {
 function mostrarEnemic () {
     var trobat = false;
     for (var i = 0; i < jugadorsAprop.enemies.length && !trobat; i++) {
+
+        //en el caso de que sea un enemigo fantasma que lo muestre pero con poca opacidad
+        if (jugadorsAprop.enemies[i].vitalpoints <= 0) {
+            document.getElementById("enemic").style.opacity="0.3";
+        }
+        //en el caso de que no lo sea que lo muestre bien.
+        else {
+            document.getElementById("enemic").style.opacity="1";
+        }
+
+        //si estas mirando hacia arriba y tienes un jugador que lo muestre
         if ((jugadorsAprop.enemies[i].x == jugador1.pos_x) && (jugadorsAprop.enemies[i].y > jugador1.pos_y) && (jugador1.direccion == "N")) {
             document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
-            console.log("1");
             trobat = true;
         }
+
+        //si estas mirando hacia abajo y tienes un jugador que lo muestre
         if ((jugadorsAprop.enemies[i].x == jugador1.pos_x) && (jugadorsAprop.enemies[i].y < jugador1.pos_y) && (jugador1.direccion == "S")) {
             document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
-            console.log("2");
             trobat = true;
         }
+
+        //si estas mirando hacia la izquierda y tienes un jugador que lo muestre
         if ((jugadorsAprop.enemies[i].x < jugador1.pos_x) && (jugadorsAprop.enemies[i].y == jugador1.pos_y) && (jugador1.direccion == "O")) {
             document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
-            console.log("3");
             trobat = true;
         }
+
+        //si estas mirando hacia la derecha y tienes un jugador que lo muestre
         if ((jugadorsAprop.enemies[i].x > jugador1.pos_x) && (jugadorsAprop.enemies[i].y == jugador1.pos_y) && (jugador1.direccion == "E")) {
             document.getElementById("enemic").setAttribute("src", "battlearena-avatars/my_character-" + jugadorsAprop.enemies[i].image + ".png");
-            console.log("4");
             trobat = true;
         }
     }
+    //si no hay ningun jugador en un tu campo de visión que no muestre nada
+    if (!trobat) {
+        document.getElementById("enemic").setAttribute("src", "");
+    }
 }
 
-// vuida el minimapa per posar caselles blanques
+//buida el minimapa per posar caselles blanques
 function buidaMapa () {
     for (var i = 0; i < 40; i++) {
         for (var j = 0; j < 40; j++) {
@@ -472,12 +311,13 @@ function buidaMapa () {
 }
 
 // actualitza el minimapa cada 1 segon
-var updateMap = setInterval(ompleMinimapa, 1000); //FIXME: Descomentar aixo per actualizar el mapa
+var updateMap = setInterval(ompleMinimapa, 1000); 
 
 // omple el minimapa
 function ompleMinimapa() {
     if(viu){
 
+        //declaramos la promesa de playersObjects donde nos cargara todos lo enemigos y objectos que haya en nuestro alrededor.
         playersObjects = new Promise (function (myResolve2, myReject2) {
             var status;
             var xhr = new XMLHttpRequest();
@@ -491,7 +331,7 @@ function ompleMinimapa() {
                 }
                 else {
                     console.error(xhr.statusText);
-                    myReject2(alert("Error"));
+                    myReject2(console.log("Error"));
                 }
             };
             xhr.onerror = function () {
@@ -501,6 +341,7 @@ function ompleMinimapa() {
             return status;
         })
         
+        //declaramos la promesa de map donde nos cargara todos lo enemigos que haya en el juego.
         map = new Promise (function (myResolve, myReject) {
             var status;
             var xhr = new XMLHttpRequest();
@@ -514,7 +355,7 @@ function ompleMinimapa() {
                 }
                 else {
                     console.error(xhr.statusText);
-                    myReject(alert("Error"));
+                    myReject(console.log("Error"));
                 }
             };
             xhr.onerror = function () {
@@ -571,8 +412,8 @@ function mostraMinimapa(){
 
 function mostraEnemicsAprop () {
     var enemicsAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable enemics-aprop">';
-    //enemicsAprop += '<thead>Enemics</thead>';
     enemicsAprop += '<tr><th>X</th><th>Y</th><th>Direccio</th><th>Vida</th></tr>';
+
     playersObjects.then(function (value) {
         for (var i = 0; i < value.enemies.length; i++) {
             enemicsAprop += "<tr><td>" + value.enemies[i].x + "</td><td>" + value.enemies[i].y + "</td><td>" + value.enemies[i].direction + "</td><td>" + value.enemies[i].vitalpoints + "</td></tr>";
@@ -584,6 +425,11 @@ function mostraEnemicsAprop () {
     )
 }
 
+/*
+ * @Finalitat: Dibuixa la taula del minimapa en el fitxer html
+ * @Paràmetres: no
+ * @Retorn: no
+ */
 /* function mostraObjectesAprop () {
     playersObjects();
     var objectesAprop = '<table class="table is-bordered is-striped is-narrow is-hoverable objectes-aprop">';
