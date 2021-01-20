@@ -1,109 +1,3 @@
-.has-bg-img {
-  background: url("img/battlearena_background.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #999;
-}
-
-body {
-  background-image: url(img/battlearena_2.jpg);
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.has-background-brown {
-  background-color: #413329;
-}
-
-.container {
-  position: relative;
-  width: 128px;
-}
-
-.back-element {
-  position: relative;
-  z-index: 1;
-}
-
-.front-element {
-  position: absolute;
-  top: 200px;
-  right: 105px;
-  z-index: 3;
-}
-.is-200x200 {
-    width: 200px;
-    height: 200px;
-}
-
-.is-resized {
-    width: 200px;
-    height: 30px;
-}
-
-.back{
-  background: url("img/fondo.jpg");
-  background-size: cover;
-  height: 100%;
-}
-.textInfo{
-  color:aliceblue;
-}
-
-.textInfoSub{
-  color:aliceblue;
-  margin-left: 8%;
-}
-
-.button{
-  margin-left: 20%;
-  margin-bottom: 3%;
-  width: 75%;
-}
-
-th,
-td,
-tr {
-  border: 1px;
-  border-style: solid;
-  text-align: center;
-  height: 7px;
-  width: 7px;
-}
-
-table {
-  background-color: white;
-}
-
-.cell-enemy-red {
-    background-color: red;
-}
-
-.cell-player1-blue {
-    background-color: blue;
-}
-
-.cell-object-black {
-    background-color: black;
-}
-
-.cell-white {
-    background-color: white;
-}
-
-.minimapa {
-    margin-top: 2%;
-    margin-left: 8%;
-}
-
-.enemics-aprop {
-    position: relative;
-    width: 128px;
-  }
-
 /*GAME*/
     /*Elementos base modificados*/
 
@@ -231,3 +125,42 @@ table {
     width: 75%;
     margin-left: 15%;
   }
+
+  .has-bg-img {
+    background: url("img/battlearena_background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #999;
+  }
+  
+  .has-background-brown {
+    background-color: #413329;
+  }
+  
+  .container {
+    position: relative;
+    width: 128px;
+  }
+  
+  .back-element {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .front-element {
+    position: absolute;
+    top: 200px;
+    right: 105px;
+    z-index: 3;
+  }
+  .is-200x200 {
+      width: 200px;
+      height: 200px;
+  }
+  
+  .enemics-aprop {
+      position: relative;
+      width: 128px;
+    }
