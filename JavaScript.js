@@ -265,6 +265,7 @@ function pulsarTecla (event) {
  */
 function mostrarEnemic () {
     var trobat = false;
+    
     for (var i = 0; i < jugadorsAprop.enemies.length && !trobat; i++) {
 
         //en el caso de que sea un enemigo fantasma que lo muestre pero con poca opacidad
@@ -306,15 +307,11 @@ function mostrarEnemic () {
     }
 }
 
-<<<<<<< HEAD
-//buida el minimapa per posar caselles blanques
-=======
 /*
  * @Finalitat: Buida el minimapa per posar caselles blanques
  * @Paràmetres: no
  * @Retorn: no
  */
->>>>>>> edac5120289b9a6be6656868d4d2d577c2d913a8
 function buidaMapa () {
     for (var i = 0; i < 40; i++) {
         for (var j = 0; j < 40; j++) {
@@ -333,7 +330,6 @@ var updateMap = setInterval(ompleMinimapa, 1000);
  */
 function ompleMinimapa() {
     if(viu){
-
         //declaramos la promesa de playersObjects donde nos cargara todos lo enemigos y objectos que haya en nuestro alrededor.
         playersObjects = new Promise (function (myResolve2, myReject2) {
             var status;
@@ -384,18 +380,21 @@ function ompleMinimapa() {
         
         buidaMapa ();
         map.then(function(value) {
+            // actualitzem el minimapa de enemics assignant un 1 a la casella
             for(var i = 0; i < value.enemies.length; i++) {
                 var x = value.enemies[i].x;
                 var y = value.enemies[i].y;
                 matrixMinimap[y][x] = 1;
             }
 
+            // actualitzem el minimapa d'objectes assignant un 2 a la casella
             for (var i = 0; i < value.objects.length; i++) {
                 var x = value.objects[i].x;
                 var y = value.objects[i].y;
                 matrixMinimap[y][x] = 2;
             }
 
+            // actualitzem la posicio del nostre jugador en el minimapa assignant un 3
             matrixMinimap[jugador1.pos_y][jugador1.pos_x] = 3;
 
             mostraMinimapa();
@@ -418,6 +417,7 @@ function mostraMinimapa(){
     for(var i=matrixMinimap.length -1; i >= 0; i--) {
         fullmap += '<tr>';
         for(var j=0; j<matrixMinimap[i].length; j++) {
+            // en funcio del numero de la casella en l'array del minimapa pintem les caselles de diferent color
             switch (matrixMinimap[i][j]) {
                 case 0: fullmap += '<td class="cell-white"></td>'; break;
                 case 1: fullmap += '<td class="cell-enemy-red"></td>'; break;
@@ -444,7 +444,7 @@ function mostraEnemicsAprop () {
         for (var i = 0; i < value.enemies.length; i++) {
             enemicsAprop += "<tr><td>" + value.enemies[i].x + "</td><td>" + value.enemies[i].y + "</td><td>" + value.enemies[i].direction + "</td><td>" + value.enemies[i].vitalpoints + "</td></tr>";
         }
-        enemicsAprop += '</table>'
+        enemicsAprop += '</table>';
         document.getElementById('tabla-enemics').innerHTML = enemicsAprop;
     },
         function(error) {console.log(error)}
