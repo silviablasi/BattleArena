@@ -222,7 +222,7 @@ function pulsarTecla (event) {
                 mostrarEnemic();
             }
             else {
-                console.warn("Error! No puedes hacer un salto doble");
+                alert("Error! No puedes hacer un salto doble");
             }
             break;
 

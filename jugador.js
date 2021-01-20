@@ -134,7 +134,7 @@ class jugador {
             }
             else {
                 if (status >= 500 && status < 510) {
-                    console.error("Hay una pared, el enemigo es un fantasma o no hay nadie en la casilla");
+                    alert("Hay una pared, el enemigo es un fantasma o no hay nadie en la casilla");
                 } else {
                     console.error(xhr.statusText);
                 }
