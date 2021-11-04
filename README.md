@@ -1,2 +1,4 @@
-# PW_Practica2
-Practica 2
+# Battle Arena
+-	Descripción: Juego de rol, donde el principal objetivo es mantenerse vivo de los ataques de otros jugadores. Datos utilizados de una API.
+-	Lenguajes: HTML, CSS y JavaScript
+- Asignatura: Proyectos Web I
